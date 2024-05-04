@@ -4,9 +4,12 @@ $(document).ready(function () {
         selectActiveNavigationItem();
     }, 30);
 
-    addFooter();
+    //addFooter();
 
     $("#menuBtn").click(function () {
+        window.location.href = "/jelovnik.html";
+    });
+    $("#dostavaBtn").click(function () {
         window.location.href = "/jelovnik.html";
     });
 
@@ -33,7 +36,7 @@ $(document).ready(function () {
     }
 
     function addFooter() {
-        let footerHTML = `<footer class="text-center">
+        let footerHTML = `<footer class="text-center bg-dark text-light">
         <p class="my-0">&copy; Copyright 2024, Janko Aranđelović<br>
             Odsek za softversko inženjerstvo Elektrotehničkog fakulteta Univerziteta u Beogradu.</p>
         </footer>`;
