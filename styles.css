@@ -1,0 +1,40 @@
+.navbar-custom {
+    background-color: #ef3c4e;
+}
+
+footer {
+    background-color: #343a40;
+    /* Dark color */
+    color: #fff;
+    /* White color */
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+#bgImageFood {
+    background-image: url("images/index-food.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
+#bgImageFood h1 {
+    color: white;
+    font-size: 100px;
+    padding-top: 150px;
+}
+
+#menuBtn{
+    background-color: #ffffff;
+    font-size: 50px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 5px solid black;
+}
+
+#menuBtn:hover{
+    background-color: #ad0617;
+    color: white;
+}
