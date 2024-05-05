@@ -1,15 +1,32 @@
+html {
+    min-height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    padding-bottom: 75px;
+    height: 100%;
+}
+
 .navbar-custom {
     background-color: #e40319;
+    overflow: hidden;
 }
 
 footer {
     background-color: rgb(33, 37, 41);
     color: #fff;
     padding: 10px;
-    position: relative;
+    position: absolute;
     bottom: 0;
     width: 100%;
     text-align: center;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #bgImageFood {
@@ -59,12 +76,12 @@ footer {
     text-align: center;
 }
 
-.sticky-top {
+/* .sticky-top {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-}
+} */
 
 #nameDescription {
     background-image: url("images/black-stone-bg.jpg");
@@ -81,11 +98,13 @@ footer {
     object-fit: contain;
 }
 
-#dostava h3, #posetiteNas h3 {
+#dostava h3,
+#posetiteNas h3 {
     font-weight: bold;
 }
 
-#dostava span, #posetiteNas p {
+#dostava span,
+#posetiteNas p {
     font-size: 20px;
     text-align: center;
 }
@@ -104,39 +123,129 @@ footer {
     color: white;
 }
 
-#logoimg{
+#logoimg {
     height: 70px;
 }
 
-#logoname{
+#logoname {
     font-size: 32px;
 }
 
-#navbarNav{
+#navbarNav {
     font-size: 20px;
 }
 
-#posetiteNas{
+#posetiteNas {
     background-color: #e40319;
     color: white;
     padding-top: 100px;
 }
 
-#zapratiteNas{
+#zapratiteNas {
     background-color: rgb(252, 241, 208);
     padding: 30px;
 }
-#zapratiteNas h2{
+
+#zapratiteNas h2 {
     font-weight: bold;
 }
-#zapratiteNas div{
+
+#zapratiteNas div {
     padding: 20px;
 }
-#zapratiteNas div img{
+
+#zapratiteNas div img {
     height: calc(25vw - 10px);
     width: calc(25vw - 10px);
     object-fit: cover;
 }
-#socialNetworksName{
+
+#socialNetworksName {
     color: #e40319;
 }
+
+#jelovnikTitle {
+    padding-top: 50px;
+}
+
+.card-img-top {
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+}
+
+.card {
+    width: 100%;
+    border-color: #e40319;
+    border-width: 2px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.card-body .btn {
+    color: #e40319;
+    border: 2px solid #e40319;
+}
+
+.card-body .btn:hover {
+    background-color: #e40319;
+    color: white;
+    border: 2px solid white;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    text-align: center;
+    width: calc(90% - 20px);
+    margin: 20px;
+    height: 100%;
+}
+
+.card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-body {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.jelo-card {
+    padding: 0%;
+    margin: 10px;
+}
+
+.jelo-kartica{
+    min-height: 200px;
+}
+
+.text-xs-center {
+    text-align: center;
+}
+
+#ime-kategorije {
+    font-weight: bold;
+}
+
+
+/* .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding-top: 48px; 
+    padding-bottom: 75px; 
+    overflow-y: auto;
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100% - 123px);
+    overflow-y: auto;
+} */

@@ -13,6 +13,21 @@ $(document).ready(function () {
         window.location.href = "/jelovnik.html";
     });
 
+    $("#predjela-link").click(function () {
+        localStorage.setItem("vd-proj-kategorija", "predjela");
+    });
+
+    $("#glavnaJela-link").click(function () {
+        localStorage.setItem("vd-proj-kategorija", "glavna jela");
+    });
+
+    $("#dezerti-link").click(function () {
+        localStorage.setItem("vd-proj-kategorija", "dezerti");
+    });
+
+    $("#pica-link").click(function () {
+        localStorage.setItem("vd-proj-kategorija", "pica");
+    });
 
     function loadTemplates() {
         let elements = $(".template");
@@ -24,9 +39,11 @@ $(document).ready(function () {
     function selectActiveNavigationItem() {
         let elements = $(".nav-link");
         let path = window.location.pathname;
-        //console.log(path);
         if (path === '/') {
             path = '/index.html';
+        }
+        else if (path === '/jelovnik-kategorija.html') {
+            path = '/jelovnik.html';
         }
         elements.each(function () {
             if ($(this).attr("href") === path) {

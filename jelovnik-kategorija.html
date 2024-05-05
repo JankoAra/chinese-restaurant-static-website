@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predjela | Xi-jajno</title>
+
+    <link rel="stylesheet" href="biblioteke/bootstrap.css">
+    <script src="biblioteke/bootstrap.js"></script>
+    <script src="biblioteke/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="index.js"></script>
+    <script src="menu-builder.js"></script>
+
+</head>
+
+<body>
+    <header id="navigation" class="template sticky-top"></header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-xs-3 col-md-2 bg-info sidebar h-100">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column text-sm-center text-md-start text-xs-center">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="jelovnik-kategorija.html"
+                                id="predjela-sidebar">Predjela</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="jelovnik-kategorija.html" id="glavnaJela-sidebar">Glavna jela</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="jelovnik-kategorija.html" id="dezerti-sidebar">Dezerti</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="jelovnik-kategorija.html" id="pica-sidebar">Pića</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-xs-9 ml-sm-auto col-md-10 px-md-4 text-center">
+
+                <h1 class="my-5" id="ime-kategorije"></h1>
+
+
+                <div class="jela row" id="jela">
+                </div>
+
+
+            </main>
+        </div>
+    </div>
+
+    <div class="modal fade" id="dishModal" tabindex="-1" aria-labelledby="dishModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="dishModalLabel">Dish Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 d-flex justify-content-center">
+                            <img id="dishImage" src="" class="img-fluid rounded" alt="Dish Image">
+                        </div>
+                        <div class="col-md-6">
+                            <h2 id="dishName"></h2>
+                            <p id="dishDesc"></p>
+                            <div class="d-flex flex-column">
+                                <div class="btn-group-horizontal" role="group" aria-label="Portion Size">
+                                    <input type="radio" class="btn-check" name="portionSize" id="smallPortion" value="small" autocomplete="off" checked>
+                                    <label class="btn btn-outline-primary" for="smallPortion">
+                                        <span class="portion-size">Mala porcija, </span>
+                                        <span class="portion-price" id="smallPrice"></span>
+                                    </label>
+                                    <input type="radio" class="btn-check" name="portionSize" id="largePortion" value="large" autocomplete="off">
+                                    <label class="btn btn-outline-primary" for="largePortion">
+                                        <span class="portion-size">Velika porcija, </span>
+                                        <span class="portion-price" id="largePrice"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                    <button type="button" class="btn btn-primary">Dodaj u korpu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+    <footer class="template" id="footer"></footer>
+</body>
+
+</html>
