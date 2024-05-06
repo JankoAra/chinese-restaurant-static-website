@@ -15,22 +15,27 @@ $(document).ready(function () {
 
     $("#predjela-link").click(function () {
         localStorage.setItem("vd-proj-kategorija", "predjela");
+        localStorage.removeItem("vd-proj-search");
     });
 
     $("#glavnaJela-link").click(function () {
         localStorage.setItem("vd-proj-kategorija", "glavna jela");
+        localStorage.removeItem("vd-proj-search");
     });
 
     $("#dezerti-link").click(function () {
         localStorage.setItem("vd-proj-kategorija", "dezerti");
+        localStorage.removeItem("vd-proj-search");
     });
 
     $("#pica-link").click(function () {
         localStorage.setItem("vd-proj-kategorija", "pica");
+        localStorage.removeItem("vd-proj-search");
     });
 
     $("#noviDezert").click(function () {
         localStorage.setItem("vd-proj-kategorija", "dezerti");
+        localStorage.removeItem("vd-proj-search");
     });
 
     function loadTemplates() {

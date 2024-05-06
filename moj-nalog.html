@@ -1,20 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xi-jajno - Moj nalog</title>
+    <title>Moj nalog | Xi-jajno</title>
 
     <link rel="stylesheet" href="biblioteke/bootstrap.css">
     <script src="biblioteke/bootstrap.js"></script>
     <script src="biblioteke/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <script src="index.js"></script>
+    <script src="moj-nalog.js"></script>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
+
 <body>
     <header id="navigation" class="template sticky-top"></header>
+
+    <div class="container-fluid">
+        <div class="row text-center">
+            <h2 class="my-3"><b>Korpa</b></h2>
+            <hr>
+            <div class="col-12 text-center">
+                <div id="cartList" class="text-center mx-5 px-3">
+                    <table class="table table-striped">
+                        <tr>
+                            <th></th>
+                            <th>Naziv jela</th>
+                            <th>Količina</th>
+                            <th>Cena po porciji</th>
+                            <th>Cena ukupno</th>
+                        </tr>
+                        <tbody id="cartTable">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal for confirmation -->
+    <div class="modal" id="confirmationModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Da li ste sigurni?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Da li ste sigurni da želite da uklonite proizvod iz korpe?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Poništi</button>
+                    <button type="button" class="btn btn-primary" id="confirmRemove">Ukloni</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="template" id="footer"></footer>
 </body>
+
 </html>

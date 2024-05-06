@@ -76,6 +76,50 @@ footer {
     text-align: center;
 }
 
+#sortiranje {
+    border-color: #e40319;
+    color: black;
+}
+
+#trazi-btn {
+    border-color: #e40319;
+    color: black;
+}
+
+#trazi-btn:hover {
+    background-color: #e40319;
+    color: white;
+}
+
+#addToCartToast {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 2000;
+}
+
+.btn-group[role="group"] button:enabled{
+    color: black;
+    border-color: #e40319;
+    border-radius: 25%;
+}
+
+.btn-group[role="group"] button:hover{
+    background-color: #e40319;
+    color: white;
+}
+
+.btn-quantity {
+    color: black;
+    border-width: 0;
+    opacity: 1 !important;
+    width: 3em;
+}
+
+td{
+    vertical-align: middle;
+    text-align: center;
+}
 
 /* .sticky-top {
     position: fixed;
@@ -220,7 +264,7 @@ footer {
     margin: 10px;
 }
 
-.jelo-kartica{
+.jelo-kartica {
     min-height: 200px;
 }
 
@@ -232,30 +276,31 @@ footer {
     font-weight: bold;
 }
 
-.carousel-item img{
+.carousel-item img {
     object-fit: cover;
     width: 100%;
     height: 600px;
 }
 
-body#galerija{
+body#galerija {
     background-color: rgb(252, 241, 208);
 }
 
-#logo-o-nama{
+#logo-o-nama {
     height: 300px;
     width: 300px;
 }
 
-#nameDescription p{
+#nameDescription p {
     font-size: 20px;
 }
 
-#nameDescription h1, #o-nama-lokacija h1{
+#nameDescription h1,
+#o-nama-lokacija h1 {
     font-weight: bold;
 }
 
-#o-nama-lokacija-red{
+#o-nama-lokacija-red {
     background-color: #e40319;
 }
 

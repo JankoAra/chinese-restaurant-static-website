@@ -41,10 +41,30 @@
                 </div>
             </nav>
 
+
+
+
+
             <main role="main" class="col-xs-9 ml-sm-auto col-md-10 px-md-4 text-center">
 
                 <h1 class="my-5" id="ime-kategorije"></h1>
 
+                <div class="row text-start">
+                    <div class="col-12 my-3">
+                        <div class="input-group pb-3 mb-4">
+                            <input type="text" class="form-control" placeholder="Pretražite hranu po imenu..."
+                                id="trazi-text" autocomplete="off">
+                            <button class="btn btn-outline-secondary" type="button" id="trazi-btn">Traži</button>
+                        </div>
+                        <label for="sortiranje">Sortiraj po</label>
+                        <select aria-label="Default select example" id="sortiranje">
+                            <option selected value="name-asc">Imenu rastuće</option>
+                            <option value="name-desc">Imenu opadajuće</option>
+                            <option value="price-asc">Ceni rastuće</option>
+                            <option value="price-desc">Ceni opadajuće</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="jela row" id="jela">
                 </div>
@@ -71,16 +91,26 @@
                             <p id="dishDesc"></p>
                             <div class="d-flex flex-column">
                                 <div class="btn-group-horizontal" role="group" aria-label="Portion Size">
-                                    <input type="radio" class="btn-check" name="portionSize" id="smallPortion" value="small" autocomplete="off" checked>
+                                    <input type="radio" class="btn-check" name="portionSize" id="smallPortion"
+                                        value="small" autocomplete="off" checked>
                                     <label class="btn btn-outline-primary" for="smallPortion">
                                         <span class="portion-size">Mala porcija, </span>
                                         <span class="portion-price" id="smallPrice"></span>
                                     </label>
-                                    <input type="radio" class="btn-check" name="portionSize" id="largePortion" value="large" autocomplete="off">
+                                    <input type="radio" class="btn-check" name="portionSize" id="largePortion"
+                                        value="large" autocomplete="off">
                                     <label class="btn btn-outline-primary" for="largePortion">
                                         <span class="portion-size">Velika porcija, </span>
                                         <span class="portion-price" id="largePrice"></span>
                                     </label>
+                                </div>
+                                <div class="mt-3 d-flex align-items-center">
+                                    <label for="portionNumber" class="form-label me-3">Broj porcija:</label>
+                                    <button type="button" class="btn btn-outline-secondary me-2"
+                                        id="decreasePortion">-</button>
+                                    <input type="text" class="form-control text-center" id="portionNumber" value="1">
+                                    <button type="button" class="btn btn-outline-secondary ms-2"
+                                        id="increasePortion">+</button>
                                 </div>
                             </div>
                         </div>
@@ -88,15 +118,24 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
-                    <button type="button" class="btn btn-primary">Dodaj u korpu</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="dodajUKorpu">Dodaj u
+                        korpu</button>
                 </div>
             </div>
         </div>
     </div>
-    
-    
 
 
+    <div id="addToCartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true"
+        data-bs-delay="3000">
+        <div class="toast-header">
+            <strong class="me-auto">Jelo dodato u korpu</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="toastBody">
+            Your item has been added to the cart.
+        </div>
+    </div>
     <footer class="template" id="footer"></footer>
 </body>
 
