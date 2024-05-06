@@ -1,19 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xi-jajno - Galerija</title>
+    <title>Galerija | Xi-jajno</title>
 
     <link rel="stylesheet" href="biblioteke/bootstrap.css">
     <script src="biblioteke/bootstrap.js"></script>
     <script src="biblioteke/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <script src="index.js"></script>
-    
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
-<body>
+
+<body id="galerija">
     <header id="navigation" class="template sticky-top"></header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 offset-md-1 text-center py-0 my-3">
+                <div id="slideshow" class="carousel slide w-100" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="galerija-images/restoran1.jpg" class="d-block" alt="slika1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="galerija-images/restoran2.jpg" class="d-block" alt="slika2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="galerija-images/restoran3.jpg" class="d-block" alt="slika3">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="galerija-images/restoran4.jpg" class="d-block" alt="slika4">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="galerija-images/restoran5.jpg" class="d-block" alt="slika5">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="galerija-images/restoran6.jpg" class="d-block" alt="slika6">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#slideshow"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#slideshow"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
     <footer class="template" id="footer"></footer>
 </body>
+
 </html>

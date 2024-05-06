@@ -29,6 +29,10 @@ $(document).ready(function () {
         localStorage.setItem("vd-proj-kategorija", "pica");
     });
 
+    $("#noviDezert").click(function () {
+        localStorage.setItem("vd-proj-kategorija", "dezerti");
+    });
+
     function loadTemplates() {
         let elements = $(".template");
         elements.each(function () {

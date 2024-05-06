@@ -105,6 +105,7 @@ function buildFoodList() {
             console.log('Nema kategorije');
             break;
     }
+    $("title").text(naslov.text() + ' | Xi-jajno');
     let foodDiv = $('#jela');
     foodDiv.html('');
     list.forEach(element => {
