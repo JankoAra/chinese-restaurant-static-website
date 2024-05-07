@@ -98,13 +98,12 @@ footer {
     z-index: 2000;
 }
 
-.btn-group[role="group"] button:enabled{
+.btn-group[role="group"] button:enabled, #orderButton{
     color: black;
     border-color: #e40319;
-    border-radius: 25%;
 }
 
-.btn-group[role="group"] button:hover{
+.btn-group[role="group"] button:hover, #orderButton:hover{
     background-color: #e40319;
     color: white;
 }
@@ -119,6 +118,19 @@ footer {
 td{
     vertical-align: middle;
     text-align: center;
+}
+
+#totalPriceRow td{
+    background-color: #f0f0f0 !important;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 24px;
+    font-weight: bold;
+}
+#orderButtonRow td{
+    background-color: #ffffff !important;
+    border-width: 0;
+    padding-right: 15px;
 }
 
 /* .sticky-top {
@@ -209,9 +221,7 @@ td{
     color: #e40319;
 }
 
-#jelovnikTitle {
-    padding-top: 50px;
-}
+
 
 .card-img-top {
     width: 100%;
@@ -304,6 +314,12 @@ body#galerija {
     background-color: #e40319;
 }
 
+#orderHistoryTitle{
+    border-width: 5px 0 0 0;
+    padding-top: 10px;
+    border-color: #e40319;
+    border-style: solid;
+}
 
 /* .sidebar {
     position: fixed;

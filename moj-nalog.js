@@ -28,7 +28,6 @@ function calculateTotalPrice() {
 }
 
 function increaseQuantity(name, size) {
-    console.log(name, size);
     let cart = JSON.parse(sessionStorage.getItem('vd-proj-cart'));
     cart.forEach(element => {
         if (element.name === name && element.size === size && element.quantity < 99) {
@@ -44,7 +43,6 @@ function decreaseQuantity(name, size) {
     let cart = JSON.parse(sessionStorage.getItem('vd-proj-cart'));
     cart.forEach(element => {
         if (element.name === name && element.size === size && element.quantity > 1) {
-
             element.quantity--;
             element.price = element.pricePerOne * element.quantity;
             sessionStorage.setItem('vd-proj-cart', JSON.stringify(cart));
@@ -65,7 +63,24 @@ function removeFromCart(name, size) {
     });
 }
 
+function finalizeOrder() {
+    let cart = JSON.parse(sessionStorage.getItem('vd-proj-cart'));
+    if (cart === null || cart.length === 0) {
+        alert('Nema proizvoda u korpi!');
+        return;
+    }
+    let previousOrders = JSON.parse(localStorage.getItem('vd-proj-previous-orders'));
+    if (previousOrders === null) {
+        previousOrders = [];
+    }
+    previousOrders.push(cart);
+    sessionStorage.removeItem('vd-proj-cart');
+    localStorage.setItem('vd-proj-previous-orders', JSON.stringify(previousOrders));
+    showCart();
+}
+
 function showCart() {
+    showOrderHistory();
     $("#cartTable").html('');
     let cart = JSON.parse(sessionStorage.getItem('vd-proj-cart'));
     if (cart === null || cart.length === 0) {
@@ -91,10 +106,38 @@ function showCart() {
         </td><td>${price.toFixed(2)}</td></tr>`;
         $("#cartTable").append(tr);
     });
-    $("#cartTable").append(`<tr><td colspan="4" class="text-end"><b>Ukupno</b></td><td>${calculateTotalPrice().toFixed(2)}</td></tr>`);
-    $("#cartTable").append(`<tr><td colspan="5" class="text-end"><button class="btn btn-primary" onclick="clearCart()">Obrisi</button></td></tr>`);
+    $("#cartTable").append(`<tr id="totalPriceRow"><td colspan="4" class="text-end">Ukupno</td><td>${calculateTotalPrice().toFixed(2)}</td></tr>`);
+    $("#cartTable").append(`<tr id="orderButtonRow"><td colspan="5" class="text-end"><button class="btn" id="orderButton"">Poruči</button></td></tr>`);
 
+    
 };
+
+function showOrderHistory() {
+    let previousOrders = JSON.parse(localStorage.getItem('vd-proj-previous-orders'));
+    $("#orderHistoryList").html('');
+    if (previousOrders === null || previousOrders.length === 0) {
+        $('#orderHistoryList').html('<div class="text-start">Nema narudžbina</div>');
+        return;
+    }
+    for (let i = 0; i < previousOrders.length; i++) {
+        let div = document.createElement('div');
+        div.classList.add('previous-order');
+        let totalPrice= 0;
+        for (let j = 0; j < previousOrders[i].length; j++) {
+            let orderItem = previousOrders[i][j];
+            let orderString = orderItemToString(orderItem);
+            let span = document.createElement('span');
+            span.textContent = orderString;
+            div.appendChild(span).appendChild(document.createElement('br'));
+            totalPrice += orderItem.price;
+        }
+        let cenaSpan = document.createElement('span');
+        cenaSpan.textContent = 'Ukupna cena: ' + totalPrice.toFixed(2) + ' RSD';
+        cenaSpan.classList.add('cena-span');
+        div.appendChild(cenaSpan);
+        $("#orderHistoryList").append(div).append(document.createElement('hr'));
+    }
+}
 
 
 let cart = null;
@@ -111,22 +154,29 @@ $(document).ready(function () {
             decreaseQuantity(name, size);
         }
 
-        if (event.target.classList.contains('btn-plus')) {
+        else if (event.target.classList.contains('btn-plus')) {
             let name = event.target.getAttribute('data-name');
             let size = event.target.getAttribute('data-size');
             increaseQuantity(name, size);
         }
 
-        if (event.target.classList.contains('btn-remove-from-cart')) {
+        else if (event.target.classList.contains('btn-remove-from-cart')) {
             let name = event.target.getAttribute('data-name');
             let size = event.target.getAttribute('data-size');
-            // Show confirmation modal
-            $('#confirmationModal').modal('show');
+            $('#confirmationModalRemoveItem').modal('show');
 
-            // Add event listener to confirm removal
-            $('#confirmRemove').on('click', function () {
+            $('#confirmRemove').off('click').on('click', function () {
                 removeFromCart(name, size);
-                $('#confirmationModal').modal('hide');
+                $('#confirmationModalRemoveItem').modal('hide');
+            });
+        }
+
+        else if (event.target.id === 'orderButton') {
+            $('#confirmationModalFinalizeOrder').modal('show');
+
+            $('#confirmOrder').off('click').on('click', function () {
+                finalizeOrder();
+                $('#confirmationModalFinalizeOrder').modal('hide');
             });
         }
     });
