@@ -7,7 +7,7 @@
     <title>Moj nalog | Xi-jajno</title>
 
     <link rel="stylesheet" href="biblioteke/bootstrap.css">
-    <script src="biblioteke/bootstrap.js"></script>
+    <script src="biblioteke/bootstrap.bundle.js"></script>
     <script src="biblioteke/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <script src="index.js"></script>
@@ -21,17 +21,19 @@
 
     <div class="container-fluid">
         <div class="row text-center">
-            <h2 class="my-3"><b>Korpa</b></h2>
+            <h2 class="my-3 srb"><b>Korpa</b></h2>
+            <h2 class="my-3 eng"><b>My cart</b></h2>
 
             <div class="col-12 text-center">
                 <div id="cartList" class="text-center mx-5 px-3">
                     <table class="table table-striped">
                         <tr>
                             <th></th>
-                            <th>Naziv jela</th>
-                            <th>Količina</th>
-                            <th>Cena po porciji</th>
-                            <th>Cena ukupno</th>
+                            <th><span class="srb">Naziv jela</span><span class="eng">Dish Name</span></th>
+                            <th><span class="srb">Količina</span><span class="eng">Quantity</span></th>
+                            <th><span class="srb">Cena po porciji</span><span class="eng">Price Per Portion</span></th>
+                            <th><span class="srb">Cena ukupno</span><span class="eng">Total Price</span></th>
+
                         </tr>
                         <tbody id="cartTable">
 
@@ -41,9 +43,9 @@
             </div>
         </div>
         <div class="row">
-            <h2 class="my-3" id="orderHistoryTitle"><b>Istorija narudžbina</b></h2>
+            <h2 class="my-3 srb" id="orderHistoryTitle"><b>Istorija narudžbina</b></h2>
+            <h2 class="my-3 eng" id="orderHistoryTitle"><b>Order History</b></h2>
             <div class="col-12 text-start px-3" id="orderHistoryList">
-
             </div>
         </div>
     </div>
@@ -52,15 +54,23 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Da li ste sigurni?</h5>
+                    <h5 class="modal-title srb">Da li ste sigurni?</h5>
+                    <h5 class="modal-title eng">Are you sure?</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Da li ste sigurni da želite da uklonite proizvod iz korpe?
+                    <span class="srb">Da li ste sigurni da želite da uklonite proizvod iz korpe?</span>
+                    <span class="eng">Are you sure you want to remove this item from the cart?</span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Poništi</button>
-                    <button type="button" class="btn btn-primary" id="confirmRemove">Ukloni</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <span class="srb">Poništi</span>
+                        <span class="eng">Cancel</span>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="confirmRemove">
+                        <span class="srb">Ukloni</span>
+                        <span class="eng">Remove</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -70,15 +80,23 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Potvrdi narudžbinu?</h5>
+                    <h5 class="modal-title srb">Potvrdi narudžbinu?</h5>
+                    <h5 class="modal-title eng">Confirm order?</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Da li ste sigurni da želite da potvrdite narudžbinu?
+                    <span class="srb">Da li ste sigurni da želite da potvrdite narudžbinu?</span>
+                    <span class="eng">Are you sure you want to confirm the order?</span>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Poništi</button>
-                    <button type="button" class="btn btn-primary" id="confirmOrder">Potvrdi</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <span class="srb">Poništi</span>
+                        <span class="eng">Cancel</span>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="confirmOrder">
+                        <span class="srb">Potvrdi</span>
+                        <span class="eng">Confirm</span>
+                    </button>
                 </div>
             </div>
         </div>

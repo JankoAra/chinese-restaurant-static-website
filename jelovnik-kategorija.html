@@ -7,7 +7,7 @@
     <title></title>
 
     <link rel="stylesheet" href="biblioteke/bootstrap.css">
-    <script src="biblioteke/bootstrap.js"></script>
+    <script src="biblioteke/bootstrap.bundle.js"></script>
     <script src="biblioteke/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <script src="index.js"></script>
@@ -25,17 +25,28 @@
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column text-sm-center text-md-start text-xs-center">
                         <li class="nav-item">
-                            <a class="nav-link active" href="jelovnik-kategorija.html"
-                                id="predjela-sidebar">Predjela</a>
+                            <a class="nav-link active" href="jelovnik-kategorija.html" id="predjela-sidebar">
+                                <span class="srb">Predjela</span>
+                                <span class="eng">Appetizers</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="jelovnik-kategorija.html" id="glavnaJela-sidebar">Glavna jela</a>
+                            <a class="nav-link" href="jelovnik-kategorija.html" id="glavnaJela-sidebar">
+                                <span class="srb">Glavna jela</span>
+                                <span class="eng">Main courses</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="jelovnik-kategorija.html" id="dezerti-sidebar">Dezerti</a>
+                            <a class="nav-link" href="jelovnik-kategorija.html" id="dezerti-sidebar">
+                                <span class="srb">Dezerti</span>
+                                <span class="eng">Desserts</span>
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="jelovnik-kategorija.html" id="pica-sidebar">Pića</a>
+                            <a class="nav-link" href="jelovnik-kategorija.html" id="pica-sidebar">
+                                <span class="srb">Pića</span>
+                                <span class="eng">Drinks</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -50,14 +61,28 @@
                         <div class="input-group pb-3 mb-2">
                             <input type="text" class="form-control" placeholder="Pretražite hranu po imenu..."
                                 id="trazi-text" autocomplete="off">
-                            <button class="btn btn-outline-secondary" type="button" id="trazi-btn">Traži</button>
+                            <button class="btn btn-outline-secondary" type="button" id="trazi-btn">
+                                <span class="srb">Traži</span>
+                                <span class="eng">Search</span>
+                            </button>
                         </div>
-                        <label for="sortiranje">Sortiraj po</label>
-                        <select aria-label="Default select example" id="sortiranje">
-                            <option selected value="name-asc">Imenu rastuće</option>
-                            <option value="name-desc">Imenu opadajuće</option>
-                            <option value="price-asc">Ceni rastuće</option>
-                            <option value="price-desc">Ceni opadajuće</option>
+                        <label for="sortiranje">
+                            <span class="srb">Sortiraj po </span>
+                            <span class="eng">Sort by </span>
+                        </label>
+                        <select id="sortiranje">
+                            <option selected value="name-asc">
+                                <span class="srb">Imenu rastuće</span>
+                            </option>
+                            <option value="name-desc">
+                                <span class="srb">Imenu opadajuće</span>
+                            </option>
+                            <option value="price-asc">
+                                <span class="srb">Ceni rastuće</span>
+                            </option>
+                            <option value="price-desc">
+                                <span class="srb">Ceni opadajuće</span>
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -90,18 +115,21 @@
                                     <input type="radio" class="btn-check" name="portionSize" id="smallPortion"
                                         value="small" autocomplete="off" checked>
                                     <label class="btn btn-outline-primary" for="smallPortion">
-                                        <span class="portion-size">Mala porcija, </span>
+                                        <span class="portion-size srb">Mala porcija, </span>
+                                        <span class="portion-size eng">Small, </span>
                                         <span class="portion-price" id="smallPrice"></span>
                                     </label>
                                     <input type="radio" class="btn-check" name="portionSize" id="largePortion"
                                         value="large" autocomplete="off">
                                     <label class="btn btn-outline-primary" for="largePortion">
-                                        <span class="portion-size">Velika porcija, </span>
+                                        <span class="portion-size srb">Velika porcija, </span>
+                                        <span class="portion-size eng">Large, </span>
                                         <span class="portion-price" id="largePrice"></span>
                                     </label>
                                 </div>
                                 <div class="mt-3 d-flex align-items-center">
-                                    <label for="portionNumber" class="form-label me-3">Broj porcija:</label>
+                                    <label for="portionNumber" class="form-label me-3 srb">Broj porcija:</label>
+                                    <label for="portionNumber" class="form-label me-3 eng">Number of portions:</label>
                                     <button type="button" class="btn btn-outline-secondary me-2"
                                         id="decreasePortion">-</button>
                                     <input type="text" class="form-control text-center" id="portionNumber" value="1">
@@ -113,9 +141,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="dodajUKorpu">Dodaj u
-                        korpu</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <span class="srb">Zatvori</span>
+                        <span class="eng">Close </span>
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="dodajUKorpu">
+                        <span class="srb">Dodaj u korpu</span>
+                        <span class="eng">Add to cart</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -125,11 +158,12 @@
     <div id="addToCartToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true"
         data-bs-delay="3000">
         <div class="toast-header">
-            <strong class="me-auto">Jelo dodato u korpu</strong>
+            <b class="me-auto srb">Jelo dodato u korpu</b>
+            <b class="me-auto eng">Item added to cart</b>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body" id="toastBody">
-            Your item has been added to the cart.
+            Jelo.
         </div>
     </div>
     <footer class="template" id="footer"></footer>

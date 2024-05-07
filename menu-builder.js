@@ -102,19 +102,19 @@ function buildFoodList() {
         list = foodList.filter(food => osisajLatinicu(food.name).includes(searchQuery));
     } else {
         switch (category) {
-            case 'predjela':
+            case 'Predjela':
                 list = predjela;
                 naslov.text('Predjela');
                 break;
-            case 'glavna jela':
+            case 'Glavna jela':
                 list = glavnaJela;
                 naslov.text('Glavna jela');
                 break;
-            case 'dezerti':
+            case 'Dezerti':
                 list = dezerti;
                 naslov.text('Dezerti');
                 break;
-            case 'pica':
+            case 'Pića':
                 list = pica;
                 naslov.text('Pića');
                 break;
@@ -156,22 +156,22 @@ $(document).ready(function () {
     localStorage.setItem("vd-proj-sort", "name-asc");
 
     $("#predjela-sidebar").click(function () {
-        localStorage.setItem("vd-proj-kategorija", "predjela");
+        localStorage.setItem("vd-proj-kategorija", "Predjela");
         localStorage.removeItem("vd-proj-search");
     });
 
     $("#glavnaJela-sidebar").click(function () {
-        localStorage.setItem("vd-proj-kategorija", "glavna jela");
+        localStorage.setItem("vd-proj-kategorija", "Glavna jela");
         localStorage.removeItem("vd-proj-search");
     });
 
     $("#dezerti-sidebar").click(function () {
-        localStorage.setItem("vd-proj-kategorija", "dezerti");
+        localStorage.setItem("vd-proj-kategorija", "Dezerti");
         localStorage.removeItem("vd-proj-search");
     });
 
     $("#pica-sidebar").click(function () {
-        localStorage.setItem("vd-proj-kategorija", "pica");
+        localStorage.setItem("vd-proj-kategorija", "Pića");
         localStorage.removeItem("vd-proj-search");
     });
 
@@ -193,6 +193,7 @@ $(document).ready(function () {
             $(this).blur();
         }
     });
+
 
     $('#dishModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
