@@ -92,7 +92,6 @@ $(document).ready(function () {
         else if (path === '/jelovnik-kategorija.html') {
             path = localStorage.getItem('vd-proj-kategorija');
         }
-        console.log(path);
         if (lang === 'srb') {
             document.title = pageTitles['srb'][path];
         }
@@ -100,7 +99,6 @@ $(document).ready(function () {
             document.title = pageTitles['eng'][path];
         }
         document.title = document.title + " | Xi-jajno";
-        console.log(document.title);
 
     }
 

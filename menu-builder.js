@@ -1,10 +1,12 @@
 class Food {
-    constructor(name, imgPath, price, desc) {
+    constructor(name, imgPath, price, desc, engName, engDesc) {
         this.name = name;
         this.imgPath = imgPath;
         this.priceSmall = price;
         this.desc = desc;
         this.priceLarge = this.priceSmall * 1.5;
+        this.engName = engName;
+        this.engDesc = engDesc;
     }
 }
 
@@ -13,26 +15,62 @@ function compareFoodPrice(a, b) {
 }
 
 function compareFoodName(a, b) {
-    if (a.name < b.name)
-        return -1;
-    if (a.name > b.name)
-        return 1;
-    return 0;
+    let lang = localStorage.getItem("vd-proj-lang");
+    if (lang === 'srb') {
+        if (a.name < b.name)
+            return -1;
+        if (a.name > b.name)
+            return 1;
+        return 0;
+    }
+    else if (lang === 'eng') {
+        if (a.engName < b.engName)
+            return -1;
+        if (a.engName > b.engName)
+            return 1;
+        return 0;
+    }
 }
 
 
 class OrderItem {
-    constructor(name, quantity, size, pricePerOne) {
+    constructor(name, quantity, size, pricePerOne, engName) {
         this.name = name;
+        this.engName = engName;
         this.quantity = parseInt(quantity);
+        if (size === 'large') {
+            this.sizeSrb = 'velika';
+            this.sizeEng = 'large';
+        }
+        else {
+            this.sizeSrb = 'mala';
+            this.sizeEng = 'small';
+        }
         this.size = size;
         this.pricePerOne = parseFloat(pricePerOne);
         this.price = this.quantity * this.pricePerOne;
     }
 
     toString() {
-        let sz = this.size==='large' ? 'velika' : 'mala';
-        return `${this.quantity} x ${this.name} (${sz})`;
+        let lang = localStorage.getItem("vd-proj-lang");
+        if (lang === 'srb') {
+            return `${this.quantity} x ${this.name} (${this.sizeSrb})`;
+        }
+        else if (lang === 'eng') {
+            return `${this.quantity} x ${this.engName} (${this.sizeEng})`;
+        }
+    }
+}
+
+function showCorrectLanguage() {
+    let lang = localStorage.getItem("vd-proj-lang");
+    if (lang === "srb") {
+        $(".eng").hide();
+        $(".srb").show();
+    }
+    else if (lang === "eng") {
+        $(".srb").hide();
+        $(".eng").show();
     }
 }
 
@@ -40,49 +78,76 @@ let foodList = [];
 
 //predjela
 let predjela = [];
-predjela.push(new Food('Hladan krastavac', 'hrana-images/hladan-krastavac.jpg', 390, 'Salata sa krastavcem i sirćetom'));
-predjela.push(new Food('Salata od gljiva', 'hrana-images/salata-od-gljiva.jpg', 480, 'Salata od kineskih pečuraka'));
-predjela.push(new Food('Voćna salata', 'hrana-images/vocna-salata.jpg', 490, 'Salata od sezonskog voća'));
-predjela.push(new Food('Ljuto-kisela supa', 'hrana-images/ljuto-kisela-supa.jpg', 260, 'Ljuto-kisela supa sa pečurkama'));
+predjela.push(new Food('Hladan krastavac', 'hrana-images/hladan-krastavac.jpg', 390, 'Salata sa krastavcem i sirćetom',
+    'Cold Cucumber', 'Salad with cucumber and vinegar'));
+predjela.push(new Food('Salata od gljiva', 'hrana-images/salata-od-gljiva.jpg', 480, 'Salata od kineskih pečuraka',
+    'Mushroom Salad', 'Chinese mushroom salad'));
+predjela.push(new Food('Voćna salata', 'hrana-images/vocna-salata.jpg', 490, 'Salata od sezonskog voća',
+    'Fruit Salad', 'Seasonal fruit salad'));
+predjela.push(new Food('Ljuto-kisela supa', 'hrana-images/ljuto-kisela-supa.jpg', 260, 'Ljuto-kisela supa sa pečurkama',
+    'Spicy and Sour Soup', 'Spicy and sour soup with mushrooms'));
 
 //glavna jela
 let glavnaJela = [];
-glavnaJela.push(new Food('Pileći prženi rezanci', 'hrana-images/pileci-przeni-rezanci.jpg', 500, 'Piletina sa rezancima u slatko-kiselom sosu'));
-glavnaJela.push(new Food('Knedle od škampa', 'hrana-images/knedle-od-skampa.jpg', 990, 'Porcija kineskih knedli punjenih škampima'));
-glavnaJela.push(new Food('Pirinač', 'hrana-images/pirinac.jpg', 150, 'Kuvani beli pirinač'));
+glavnaJela.push(new Food('Pileći prženi rezanci', 'hrana-images/pileci-przeni-rezanci.jpg', 500, 'Piletina sa rezancima u slatko-kiselom sosu',
+    'Chicken Fried Noodles', 'Chicken with noodles in sweet and sour sauce'));
+glavnaJela.push(new Food('Knedle od škampa', 'hrana-images/knedle-od-skampa.jpg', 990, 'Porcija kineskih knedli punjenih škampima',
+    'Shrimp Dumplings', 'Chinese dumplings filled with shrimp'));
+glavnaJela.push(new Food('Pirinač', 'hrana-images/pirinac.jpg', 150, 'Kuvani beli pirinač',
+    'Rice', 'Boiled white rice'));
 
 //pića
 let pica = [];
-pica.push(new Food('Bubble tea', 'hrana-images/bubble-tea.jpg', 250, 'Mlečni čaj sa kuglicama tapioke'));
-pica.push(new Food('Mleko od kikirikija', 'hrana-images/mleko-od-kikirikija.jpg', 200, 'Mleko od kikirikija'));
-pica.push(new Food('Kineski čaj', 'hrana-images/kineski-caj.jpg', 190, 'Originalni kineski čaj spremljen na tradicionalan način'));
+pica.push(new Food('Bubble tea', 'hrana-images/bubble-tea.jpg', 250, 'Mlečni čaj sa kuglicama tapioke',
+    'Bubble Tea', 'Milk tea with tapioca balls'));
+pica.push(new Food('Mleko od kikirikija', 'hrana-images/mleko-od-kikirikija.jpg', 200, 'Mleko od kikirikija',
+    'Peanut Milk', 'Peanut milk'));
+pica.push(new Food('Kineski čaj', 'hrana-images/kineski-caj.jpg', 190, 'Originalni kineski čaj spremljen na tradicionalan način',
+    'Chinese Tea', 'Original Chinese tea prepared in a traditional way'));
 
 //dezerti
 let dezerti = [];
-dezerti.push(new Food('Pohovana banana', 'hrana-images/pohovana-banana.jpg', 400, 'Pohovana banana sa prelivom'));
-dezerti.push(new Food('Pohovani ananas', 'hrana-images/pohovani-ananas.jpg', 400, 'Pohovani ananas sa prelivom'));
-dezerti.push(new Food('Pohovana čokolada', 'hrana-images/pohovana-cokolada.jpg', 400, 'Pohovana čokolada sa prelivom'));
+dezerti.push(new Food('Pohovana banana', 'hrana-images/pohovana-banana.jpg', 400, 'Pohovana banana sa prelivom',
+    'Fried Banana', 'Fried banana with topping'));
+dezerti.push(new Food('Pohovani ananas', 'hrana-images/pohovani-ananas.jpg', 400, 'Pohovani ananas sa prelivom',
+    'Fried Pineapple', 'Fried pineapple with topping'));
+dezerti.push(new Food('Pohovana čokolada', 'hrana-images/pohovana-cokolada.jpg', 400, 'Pohovana čokolada sa prelivom',
+    'Fried Chocolate', 'Fried chocolate with topping'));
+
 
 foodList.push(...predjela, ...glavnaJela, ...pica, ...dezerti);
 
 function buildFoodCard(food) {
+    let nameSerbian = food.name;
+    let nameEnglish = food.engName;
+    let descSerbian = food.desc;
+    let descEnglish = food.engDesc;
+    let price = food.priceSmall.toFixed(2);
+    let altText = nameSerbian + ' slika';
+
     return `<div class="col-sm-12 col-md-6 col-lg-4">
         <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#dishModal" 
         data-food-name="${food.name}" 
+        data-food-name-eng="${food.engName}" 
         data-food-desc="${food.desc}" 
+        data-food-desc-eng="${food.engDesc}" 
         data-food-price="${food.priceSmall.toFixed(2)}" 
         data-food-img="${food.imgPath}">
             <div class="card jelo-card my-xs-5 mx-xs-3 my-md-3 mx-md-0">
-                <img src="${food.imgPath}" class="card-img-top" alt="${food.name + ' slika'}">
+                <img src="${food.imgPath}" class="card-img-top" alt="${altText}">
                 <div class="card-body jelo-kartica">
-                    <h4 class="card-title">${food.name}</h4>
-                    <p class="card-text">${food.desc}</p>
-                    <h5 class="text-start">${food.priceSmall.toFixed(2)}</h5>
+                    <h4 class="card-title srb">${nameSerbian}</h4>
+                    <h4 class="card-title eng">${nameEnglish}</h4>
+                    <p class="card-text srb">${descSerbian}</p>
+                    <p class="card-text eng">${descEnglish}</p>
+                    <h5 class="text-start srb">${price}</h5>
+                    <h5 class="text-start eng">${price}</h5>
                 </div>
             </div>
         </a>
     </div>`;
 }
+
 
 function osisajLatinicu(str) {
     str = str.toLowerCase();
@@ -94,35 +159,44 @@ function buildFoodList() {
     const category = localStorage.getItem('vd-proj-kategorija');
     let list = null;
     const naslov = $('#ime-kategorije');
+    const naslovEng = $('#ime-kategorije-eng');
     let searchQuery = localStorage.getItem('vd-proj-search');
+    let lang = localStorage.getItem("vd-proj-lang");
     if (searchQuery !== null) {
         naslov.text('Pretraga');
-        $("title").text('Pretraga | Xi-jajno');
+        naslovEng.text('Search');
+        let titleText = lang === 'srb' ? 'Pretraga' : 'Search';
+        $("title").text(`${titleText} | Xi-jajno`);
         searchQuery = osisajLatinicu(searchQuery);
-        list = foodList.filter(food => osisajLatinicu(food.name).includes(searchQuery));
+        list = foodList.filter(food => osisajLatinicu(food.name).includes(searchQuery) ||
+            osisajLatinicu(food.engName).includes(searchQuery));
     } else {
         switch (category) {
             case 'Predjela':
                 list = predjela;
                 naslov.text('Predjela');
+                naslovEng.text('Appetizers');
                 break;
             case 'Glavna jela':
                 list = glavnaJela;
                 naslov.text('Glavna jela');
+                naslovEng.text('Main courses');
                 break;
             case 'Dezerti':
                 list = dezerti;
                 naslov.text('Dezerti');
+                naslovEng.text('Desserts');
                 break;
             case 'Pića':
                 list = pica;
                 naslov.text('Pića');
+                naslovEng.text('Drinks');
                 break;
             default:
                 console.log('Nema kategorije');
                 break;
         }
-        $("title").text(naslov.text() + ' | Xi-jajno');
+        //$("title").text(naslov.text() + ' | Xi-jajno');
     }
     let sort = localStorage.getItem('vd-proj-sort');
     if (sort === null) {
@@ -150,6 +224,7 @@ function buildFoodList() {
     list.forEach(element => {
         foodDiv.html(foodDiv.html() + buildFoodCard(element));
     });
+    showCorrectLanguage();
 }
 
 $(document).ready(function () {
@@ -199,27 +274,32 @@ $(document).ready(function () {
         var button = $(event.relatedTarget); // Button that triggered the modal
         var foodName = button.data('food-name'); // Extract info from data-* attributes
         var foodDesc = button.data('food-desc');
+        var foodNameEng = button.data('food-name-eng');
+        var foodDescEng = button.data('food-desc-eng');
         var foodPriceSmall = button.data('food-price');
         foodPriceSmall = parseFloat(foodPriceSmall);
         var foodPriceLarge = foodPriceSmall * 1.5;
         var modal = $(this);
         $("#portionNumber").val("1");
         $("#smallPortion").prop("checked", true);
-        modal.find('.modal-title').text(foodName);
+        //modal.find('.modal-title').text(foodName);
         modal.find('#dishImage').attr('src', button.data('food-img'));
-        modal.find('#dishDesc').text(foodDesc);
-        modal.find('#dishName').text(foodName);
+        modal.find('.dish-desc-srb').text(foodDesc);
+        modal.find('.dish-desc-eng').text(foodDescEng);
+        modal.find('.dish-name-srb').text(foodName);
+        modal.find('.dish-name-eng').text(foodNameEng);
         modal.find('#smallPrice').text(foodPriceSmall.toFixed(2));
         modal.find('#largePrice').text(foodPriceLarge.toFixed(2));
     });
 
     $("#dodajUKorpu").click(function () {
-        var dishName = $("#dishName").text();
+        var dishName = $("#dishName").find("span.srb").text();
+        var dishNameEng = $("#dishName").find("span.eng").text();
         var portionSize = $('input[name="portionSize"]:checked').val();
         var portionPrice = $("#" + portionSize + "Price").text();
         var portionNumber = $("#portionNumber").val();
 
-        let orderItem = new OrderItem(dishName, portionNumber, portionSize, portionPrice);
+        let orderItem = new OrderItem(dishName, portionNumber, portionSize, portionPrice, dishNameEng);
         let cart = JSON.parse(sessionStorage.getItem("vd-proj-cart"));
         if (cart === null) {
             cart = [orderItem];
@@ -234,12 +314,11 @@ $(document).ready(function () {
                     break;
                 }
             }
-            if (!found)
+            if (!found) {
                 cart.push(orderItem);
+            }
         }
         sessionStorage.setItem("vd-proj-cart", JSON.stringify(cart));
-
-        console.log("Dish added to cart:", orderItem);
         $("#toastBody").html(orderItem.toString());
         $("#addToCartToast").toast('show');
     });

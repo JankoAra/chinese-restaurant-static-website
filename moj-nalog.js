@@ -13,9 +13,25 @@ class OrderItem {
     }
 }
 
-function orderItemToString(item) {
-    let sz = item.size === 'large' ? 'velika' : 'mala';
-    return `${item.quantity} x ${item.name} (${sz})`;
+function orderItemToString(item, lang) {
+    if (lang === 'srb') {
+        return `${item.quantity} x ${item.name} (${item.sizeSrb})`;
+    }
+    else if (lang === 'eng') {
+        return `${item.quantity} x ${item.engName} (${item.sizeEng})`;
+    }
+}
+
+function showCorrectLanguage() {
+    let lang = localStorage.getItem("vd-proj-lang");
+    if (lang === "srb") {
+        $(".eng").hide();
+        $(".srb").show();
+    }
+    else if (lang === "eng") {
+        $(".srb").hide();
+        $(".eng").show();
+    }
 }
 
 function calculateTotalPrice() {
@@ -47,7 +63,6 @@ function decreaseQuantity(name, size) {
             element.price = element.pricePerOne * element.quantity;
             sessionStorage.setItem('vd-proj-cart', JSON.stringify(cart));
             showCart();
-
         }
     });
 }
@@ -84,15 +99,19 @@ function showCart() {
     $("#cartTable").html('');
     let cart = JSON.parse(sessionStorage.getItem('vd-proj-cart'));
     if (cart === null || cart.length === 0) {
-        $('#cartTable').html('<tr><td colspan="5" class="text-center">Nema proizvoda u korpi</td></tr>');
+        $('#cartTable').html(`<tr><td colspan="5" class="text-center">
+        <span class="srb">Nema proizvoda u korpi</span>
+        <span class="eng">Cart is empty</span>
+        </td></tr>`);
+        showCorrectLanguage();
         return;
     }
     cart.forEach(element => {
         let pricePerOne = parseFloat(element.pricePerOne);
         let quantity = parseInt(element.quantity);
         let price = pricePerOne * quantity;
-        let sz = element.size === 'large' ? 'velika' : 'mala';
-        let foodName = element.name + ' (' + sz + ')';
+        let foodName = element.name + ' (' + element.sizeSrb + ')';
+        let foodNameEng = element.engName + ' (' + element.sizeEng + ')';
         let btnMinus = `<button type="button" class="btn btn-outline-primary rounded-circle btn-minus" 
                         data-name="${element.name}" data-size="${element.size}">&minus;</button>`;
         let btnPlus = `<button type="button" class="btn btn-outline-primary rounded-circle btn-plus" 
@@ -102,41 +121,56 @@ function showCart() {
 
         let btnClose = `<button type="button" class="btn-close btn-remove-from-cart" 
                         data-name="${element.name}" data-size="${element.size}"></button>`;
-        let tr = `<tr><td>${btnClose}</td><td>${foodName}</td><td>${quantityInnerHTML}</td><td>${pricePerOne.toFixed(2)}
+        let foodNameSpan = `<span class="srb">${foodName}</span><span class="eng">${foodNameEng}</span>`;
+        let tr = `<tr><td>${btnClose}</td><td>${foodNameSpan}</td><td>${quantityInnerHTML}</td><td>${pricePerOne.toFixed(2)}
         </td><td>${price.toFixed(2)}</td></tr>`;
         $("#cartTable").append(tr);
     });
-    $("#cartTable").append(`<tr id="totalPriceRow"><td colspan="4" class="text-end">Ukupno</td><td>${calculateTotalPrice().toFixed(2)}</td></tr>`);
-    $("#cartTable").append(`<tr id="orderButtonRow"><td colspan="5" class="text-end"><button class="btn" id="orderButton"">Poruči</button></td></tr>`);
+    $("#cartTable").append(`<tr id="totalPriceRow"><td colspan="4" class="text-end">
+                        <span class="srb">Ukupno</span>
+                        <span class="eng">Total</span>
+                        </td>
+                        <td>${calculateTotalPrice().toFixed(2)}</td>
+                        </tr>`);
+    $("#cartTable").append(`<tr id="orderButtonRow"><td colspan="5" class="text-end">
+                        <button class="btn" id="orderButton">
+                        <span class="srb">Poruči</span>
+                        <span class="eng">Order</span>
+                        </button></td></tr>`);
+    showCorrectLanguage();
 
-    
 };
 
 function showOrderHistory() {
     let previousOrders = JSON.parse(localStorage.getItem('vd-proj-previous-orders'));
     $("#orderHistoryList").html('');
     if (previousOrders === null || previousOrders.length === 0) {
-        $('#orderHistoryList').html('<div class="text-start">Nema narudžbina</div>');
+        $('#orderHistoryList').html(`<div class="text-start">
+        <span class="srb">Nema narudžbina</span>
+        <span class="eng">No orders yet</span>
+        </div>`);
         return;
     }
     for (let i = 0; i < previousOrders.length; i++) {
-        let div = document.createElement('div');
-        div.classList.add('previous-order');
-        let totalPrice= 0;
+        let div = $("<div></div>");
+        div.addClass('previous-order');
+        let totalPrice = 0;
         for (let j = 0; j < previousOrders[i].length; j++) {
             let orderItem = previousOrders[i][j];
-            let orderString = orderItemToString(orderItem);
-            let span = document.createElement('span');
-            span.textContent = orderString;
-            div.appendChild(span).appendChild(document.createElement('br'));
+            let orderStringSrb = orderItemToString(orderItem, 'srb');
+            let orderStringEng = orderItemToString(orderItem, 'eng');
+            let spanSrb = $(`<span class="srb">${orderStringSrb}</span>`);
+            let spanEng = $(`<span class="eng">${orderStringEng}</span>`);
+            let innerDiv = $("<div class='my-1 py-0'></div>").append(spanSrb).append(spanEng);
+            div.append(innerDiv);
             totalPrice += orderItem.price;
         }
-        let cenaSpan = document.createElement('span');
-        cenaSpan.textContent = 'Ukupna cena: ' + totalPrice.toFixed(2) + ' RSD';
-        cenaSpan.classList.add('cena-span');
-        div.appendChild(cenaSpan);
-        $("#orderHistoryList").append(div).append(document.createElement('hr'));
+        let cenaSpan = $('<span class="cena-span srb">').text('Ukupna cena: ' + totalPrice.toFixed(2) + ' RSD');
+        let cenaSpanEng = $('<span class="cena-span eng">').text('Total price: ' + totalPrice.toFixed(2) + ' RSD');
+        div.append(cenaSpan).append(cenaSpanEng);
+        $("#orderHistoryList").append(div).append("<hr>");
     }
+    
 }
 
 
@@ -172,6 +206,14 @@ $(document).ready(function () {
         }
 
         else if (event.target.id === 'orderButton') {
+            $('#confirmationModalFinalizeOrder').modal('show');
+
+            $('#confirmOrder').off('click').on('click', function () {
+                finalizeOrder();
+                $('#confirmationModalFinalizeOrder').modal('hide');
+            });
+        }
+        else if (event.target.parentNode.id === 'orderButton') {
             $('#confirmationModalFinalizeOrder').modal('show');
 
             $('#confirmOrder').off('click').on('click', function () {
