@@ -52,7 +52,7 @@ $(document).ready(function () {
             localStorage.setItem("vd-proj-kategorija", "Dezerti");
             localStorage.removeItem("vd-proj-search");
         });
-    }, 30);
+    }, 50);
 
 
     function showCorrectLanguage() {

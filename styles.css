@@ -322,6 +322,17 @@ body#galerija {
     border-style: solid;
 }
 
+.btn-themed{
+    border-color: #e40319;
+    color: black;
+}
+
+.btn-themed:hover{
+    border-color: white;
+    background-color: #e40319;
+    color: white;
+}
+
 /* .sidebar {
     position: fixed;
     top: 0;

@@ -160,11 +160,15 @@ function buildFoodList() {
     let list = null;
     const naslov = $('#ime-kategorije');
     const naslovEng = $('#ime-kategorije-eng');
+    const breadCrumbSrb = $(".srb.activeBreadCrumb");
+    const breadCrumbEng = $(".eng.activeBreadCrumb");
     let searchQuery = localStorage.getItem('vd-proj-search');
     let lang = localStorage.getItem("vd-proj-lang");
     if (searchQuery !== null) {
         naslov.text('Pretraga');
         naslovEng.text('Search');
+        breadCrumbSrb.text($(naslov).text());
+        breadCrumbEng.text($(naslovEng).text());
         let titleText = lang === 'srb' ? 'Pretraga' : 'Search';
         $("title").text(`${titleText} | Xi-jajno`);
         searchQuery = osisajLatinicu(searchQuery);
@@ -198,6 +202,8 @@ function buildFoodList() {
         }
         //$("title").text(naslov.text() + ' | Xi-jajno');
     }
+    breadCrumbSrb.text($(naslov).text());
+    breadCrumbEng.text($(naslovEng).text());
     let sort = localStorage.getItem('vd-proj-sort');
     if (sort === null) {
         sort = 'name-asc';
