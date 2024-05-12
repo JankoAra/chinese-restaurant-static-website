@@ -124,28 +124,34 @@ function buildFoodCard(food) {
     let descEnglish = food.engDesc;
     let price = food.priceSmall.toFixed(2);
     let altText = nameSerbian + ' slika';
-
-    return `<div class="col-sm-12 col-md-6 col-lg-4">
-        <a href="#" class="card-link" data-bs-toggle="modal" data-bs-target="#dishModal" 
-        data-food-name="${food.name}" 
-        data-food-name-eng="${food.engName}" 
-        data-food-desc="${food.desc}" 
-        data-food-desc-eng="${food.engDesc}" 
-        data-food-price="${food.priceSmall.toFixed(2)}" 
-        data-food-img="${food.imgPath}">
-            <div class="card jelo-card my-xs-5 mx-xs-3 my-md-3 mx-md-0">
-                <img src="${food.imgPath}" class="card-img-top" alt="${altText}">
-                <div class="card-body jelo-kartica">
-                    <h4 class="card-title srb">${nameSerbian}</h4>
-                    <h4 class="card-title eng">${nameEnglish}</h4>
-                    <p class="card-text srb">${descSerbian}</p>
-                    <p class="card-text eng">${descEnglish}</p>
-                    <h5 class="text-start srb">${price}</h5>
-                    <h5 class="text-start eng">${price}</h5>
+    
+    return `
+    <div class="col">
+        <div class="card h-100" data-food-name="${food.name}" 
+            data-food-name-eng="${food.engName}" 
+            data-food-desc="${food.desc}" 
+            data-food-desc-eng="${food.engDesc}" 
+            data-food-price="${food.priceSmall.toFixed(2)}" 
+            data-food-img="${food.imgPath}" 
+            data-bs-toggle="modal" data-bs-target="#dishModal">
+            <div class="row g-1">
+                <div class="col-4 col-md-12">
+                    <img src="${food.imgPath}" class="img-fluid food-card-img" alt="${altText}">
+                </div>
+                <div class="col-8 col-md-12">
+                    <div class="card-body">
+                        <h4 class="card-title srb">${nameSerbian}</h4>
+                        <h4 class="card-title eng">${nameEnglish}</h4>
+                        <p class="card-text srb">${descSerbian}</p>
+                        <p class="card-text eng">${descEnglish}</p>
+                        <h5 class="text-md-end">${price} RSD</h5>
+                    </div>
                 </div>
             </div>
-        </a>
-    </div>`;
+        </div>
+    </div>
+
+    `;
 }
 
 
@@ -274,6 +280,17 @@ $(document).ready(function () {
             $(this).blur();
         }
     });
+
+    $(".card").on("click", function () {
+        const foodName = card.dataset.foodName;
+        const foodNameEng = card.dataset.foodNameEng;
+        const foodDesc = card.dataset.foodDesc;
+        const foodDescEng = card.dataset.foodDescEng;
+        const foodPrice = card.dataset.foodPrice;
+        const foodImg = card.dataset.foodImg;
+
+        $('#dishModal').modal('show');
+    })
 
 
     $('#dishModal').on('show.bs.modal', function (event) {

@@ -11,6 +11,7 @@ $(document).ready(function () {
             localStorage.setItem("vd-proj-lang", "srb");
             showCorrectLanguage();
             selectActiveNavigationItem();
+            if($("#navbarNav").hasClass("show")) $(".navbar-toggler").click();
         });
 
         $("#eng").click(function () {
@@ -20,6 +21,7 @@ $(document).ready(function () {
             localStorage.setItem("vd-proj-lang", "eng");
             showCorrectLanguage();
             selectActiveNavigationItem();
+            if($("#navbarNav").hasClass("show")) $(".navbar-toggler").click();
         });
         $("#menuBtn").click(function () {
             window.location.href = "/jelovnik.html";

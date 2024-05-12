@@ -98,12 +98,14 @@ footer {
     z-index: 900;
 }
 
-.btn-group[role="group"] button:enabled, #orderButton{
+.btn-group[role="group"] button:enabled,
+#orderButton {
     color: black;
     border-color: #e40319;
 }
 
-.btn-group[role="group"] button:hover, #orderButton:hover{
+.btn-group[role="group"] button:hover,
+#orderButton:hover {
     background-color: #e40319;
     color: white;
 }
@@ -115,19 +117,20 @@ footer {
     width: 3em;
 }
 
-td{
+td {
     vertical-align: middle;
     text-align: center;
 }
 
-#totalPriceRow td{
+#totalPriceRow td {
     background-color: #f0f0f0 !important;
     padding-top: 8px;
     padding-bottom: 8px;
     font-size: 24px;
     font-weight: bold;
 }
-#orderButtonRow td{
+
+#orderButtonRow td {
     background-color: #ffffff !important;
     border-width: 0;
     padding-right: 15px;
@@ -230,12 +233,26 @@ td{
     height: 300px;
 }
 
+.food-card-img {
+    width: 100%;
+    object-fit: cover;
+    height: 300px;
+}
+
+@media (max-width: 768px) {
+    .food-card-img {
+        height: 100%;
+    }
+
+}
+
 .card {
     width: 100%;
     border-color: #e40319;
     border-width: 2px;
     border-radius: 30px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .card-body .btn {
@@ -264,7 +281,6 @@ td{
 }
 
 .card-body {
-    min-height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -275,15 +291,22 @@ td{
     margin: 10px;
 }
 
-.jelo-kartica {
-    min-height: 200px;
+
+
+@media (min-width: 768px) {
+    .jelo-kartica {
+        min-height: 200px;
+    }
 }
 
-.text-xs-center {
-    text-align: center;
+@media (min-width: 0) {
+    .text-xs-center {
+        text-align: center;
+    }
 }
 
-#ime-kategorije, #ime-kategorije-eng {
+#ime-kategorije,
+#ime-kategorije-eng {
     font-weight: bold;
 }
 
@@ -315,38 +338,44 @@ body#galerija {
     background-color: #e40319;
 }
 
-#orderHistoryTitle{
+#orderHistoryTitle {
     border-width: 5px 0 0 0;
     padding-top: 10px;
     border-color: #e40319;
     border-style: solid;
 }
 
-.btn-themed{
+.btn-themed {
     border-color: #e40319;
     color: black;
 }
 
-.btn-themed:hover{
+.btn-themed:hover {
     border-color: white;
     background-color: #e40319;
     color: white;
 }
 
-/* .sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    padding-top: 48px; 
-    padding-bottom: 75px; 
-    overflow-y: auto;
+@media (min-width: 768px) {
+    .position-md-fixed {
+        position: fixed;
+        background-color: #f00;
+        /* Red background color */
+        color: #fff;
+        /* White text color */
+        padding: 10px;
+        height: 100vh;
+    }
 }
 
-.sidebar-sticky {
-    position: relative;
-    top: 0;
-    height: calc(100% - 123px);
-    overflow-y: auto;
-} */
+
+.sidebar-link {
+    padding: 8px 16px 8px 16px;
+    text-decoration: none;
+    margin: 0 0 0 0;
+    color: black;
+}
+
+.card-img {
+    object-fit: cover;
+}

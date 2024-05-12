@@ -21,29 +21,29 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav class="col-xs-3 col-md-2 bg-info sidebar h-100">
-                <div class="sidebar-sticky">
+            <nav class="col-xs-3 col-md-2 bg-light position-md-fixed">
+                <div class="sidebar">
                     <ul class="nav flex-column text-sm-center text-md-start text-xs-center">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="jelovnik-kategorija.html" id="predjela-sidebar">
+                        <li class="nav-item my-md-3 my-2">
+                            <a class="sidebar-link" href="jelovnik-kategorija.html" id="predjela-sidebar">
                                 <span class="srb">Predjela</span>
                                 <span class="eng">Appetizers</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="jelovnik-kategorija.html" id="glavnaJela-sidebar">
+                        <li class="nav-item my-md-3 my-2">
+                            <a class="sidebar-link" href="jelovnik-kategorija.html" id="glavnaJela-sidebar">
                                 <span class="srb">Glavna jela</span>
                                 <span class="eng">Main courses</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="jelovnik-kategorija.html" id="dezerti-sidebar">
+                        <li class="nav-item my-md-3 my-2">
+                            <a class="sidebar-link" href="jelovnik-kategorija.html" id="dezerti-sidebar">
                                 <span class="srb">Dezerti</span>
                                 <span class="eng">Desserts</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="jelovnik-kategorija.html" id="pica-sidebar">
+                        <li class="nav-item my-md-3 my-2">
+                            <a class="sidebar-link" href="jelovnik-kategorija.html" id="pica-sidebar">
                                 <span class="srb">Pića</span>
                                 <span class="eng">Drinks</span>
                             </a>
@@ -52,7 +52,7 @@
                 </div>
             </nav>
 
-            <main role="main" class="col-xs-9 ml-sm-auto col-md-10 px-md-4 text-center">
+            <main role="main" class="col-xs-9 ml-sm-auto col-md-10 px-md-4 text-center offset-md-2 offset-xs-3">
 
                 <h1 class="mt-3 srb" id="ime-kategorije"></h1>
                 <h1 class="mt-3 eng" id="ime-kategorije-eng"></h1>
@@ -102,10 +102,10 @@
                     </div>
                 </div>
 
-                <div class="jela row" id="jela">
+                <div class="jela row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4" id="jela">
                 </div>
 
-                <div class="col-12 text-end">
+                <div class="col-12 text-end mt-5">
                     <a href="jelovnik.pdf" id="menuPDFLink" class="btn btn-themed mb-5" target="_blank">
                         <span class="srb">Preuzmi jelovnik</span>
                         <span class="eng">Download Menu</span>
