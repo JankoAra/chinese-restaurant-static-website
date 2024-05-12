@@ -30,29 +30,15 @@ $(document).ready(function () {
             window.location.href = "/jelovnik.html";
         });
 
-        $("#predjela-link").click(function () {
-            localStorage.setItem("vd-proj-kategorija", "Predjela");
-            localStorage.removeItem("vd-proj-search");
-        });
-
-        $("#glavnaJela-link").click(function () {
-            localStorage.setItem("vd-proj-kategorija", "Glavna jela");
-            localStorage.removeItem("vd-proj-search");
-        });
-
-        $("#dezerti-link").click(function () {
-            localStorage.setItem("vd-proj-kategorija", "Dezerti");
-            localStorage.removeItem("vd-proj-search");
-        });
-
-        $("#pica-link").click(function () {
-            localStorage.setItem("vd-proj-kategorija", "Pića");
-            localStorage.removeItem("vd-proj-search");
-        });
-
         $("#noviDezert").click(function () {
             localStorage.setItem("vd-proj-kategorija", "Dezerti");
             localStorage.removeItem("vd-proj-search");
+        });
+
+        $(".food-category-card").click(function () {
+            localStorage.setItem("vd-proj-kategorija", $(this).data("category"));
+            localStorage.removeItem("vd-proj-search");
+            window.location.href = "/jelovnik-kategorija.html";
         });
     }, 50);
 
