@@ -11,7 +11,7 @@ $(document).ready(function () {
             localStorage.setItem("vd-proj-lang", "srb");
             showCorrectLanguage();
             selectActiveNavigationItem();
-            if($("#navbarNav").hasClass("show")) $(".navbar-toggler").click();
+            if ($("#navbarNav").hasClass("show")) $(".navbar-toggler").click();
         });
 
         $("#eng").click(function () {
@@ -21,7 +21,7 @@ $(document).ready(function () {
             localStorage.setItem("vd-proj-lang", "eng");
             showCorrectLanguage();
             selectActiveNavigationItem();
-            if($("#navbarNav").hasClass("show")) $(".navbar-toggler").click();
+            if ($("#navbarNav").hasClass("show")) $(".navbar-toggler").click();
         });
         $("#menuBtn").click(function () {
             window.location.href = "/jelovnik.html";
@@ -171,4 +171,45 @@ $(document).ready(function () {
         }
     }
 
+    const foodNamesDictionary = {
+        'Hladan krastavac': 'Cold Cucumber',
+        'Salata od gljiva': 'Mushroom Salad',
+        'Voćna salata': 'Fruit Salad',
+        'Ljuto-kisela supa': 'Spicy and Sour Soup',
+        'Pileći prženi rezanci': 'Chicken Fried Noodles',
+        'Knedle od škampa': 'Shrimp Dumplings',
+        'Pirinač': 'Rice',
+        'Bubble tea': 'Bubble Tea',
+        'Mleko od kikirikija': 'Peanut Milk',
+        'Kineski čaj': 'Chinese Tea',
+        'Pohovana banana': 'Fried Banana',
+        'Pohovani ananas': 'Fried Pineapple',
+        'Pohovana čokolada': 'Fried Chocolate'
+    };
+
+    function initGradesInLocalStorage() {
+        if (localStorage.getItem('vd-proj-food-grades') === null) {
+            let grades = {};
+            for (const key in foodNamesDictionary) {
+                grades[key] = [];
+                for(let i=0;i<5;i++){
+                    grades[key].push(Math.floor(Math.random() * 5) + 1);
+                }
+            }
+            if (localStorage.getItem('vd-proj-previous-orders') !== null) {
+                let previousOrders = JSON.parse(localStorage.getItem('vd-proj-previous-orders'));
+                for (const order of previousOrders) {
+                    for (const key in order["grades"]) {
+                        let grade = order["grades"][key];
+                        if (grade > 0) {
+                            grades[key].push(grade);
+                        }
+                    }
+                }
+            }
+            localStorage.setItem('vd-proj-food-grades', JSON.stringify(grades));
+        }
+    }
+
+    initGradesInLocalStorage();
 });

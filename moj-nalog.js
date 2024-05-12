@@ -88,7 +88,14 @@ function finalizeOrder() {
     if (previousOrders === null) {
         previousOrders = [];
     }
-    previousOrders.push(cart);
+    let grades = {};
+    cart.forEach(element => {
+        grades[element.name] = 0;
+    });
+    console.log(grades);
+    let finalizedOrder = { "items": cart, "grades": grades };
+    console.log(finalizedOrder);
+    previousOrders.push(finalizedOrder);
     sessionStorage.removeItem('vd-proj-cart');
     localStorage.setItem('vd-proj-previous-orders', JSON.stringify(previousOrders));
     showCart();
@@ -155,8 +162,8 @@ function showOrderHistory() {
         let div = $("<div></div>");
         div.addClass('previous-order');
         let totalPrice = 0;
-        for (let j = 0; j < previousOrders[i].length; j++) {
-            let orderItem = previousOrders[i][j];
+        for (let j = 0; j < previousOrders[i]["items"].length; j++) {
+            let orderItem = previousOrders[i]["items"][j];
             let orderStringSrb = orderItemToString(orderItem, 'srb');
             let orderStringEng = orderItemToString(orderItem, 'eng');
             let spanSrb = $(`<span class="srb">${orderStringSrb}</span>`);
@@ -168,15 +175,95 @@ function showOrderHistory() {
         let cenaSpan = $('<span class="cena-span srb">').text('Ukupna cena: ' + totalPrice.toFixed(2) + ' RSD');
         let cenaSpanEng = $('<span class="cena-span eng">').text('Total price: ' + totalPrice.toFixed(2) + ' RSD');
         div.append(cenaSpan).append(cenaSpanEng);
-        $("#orderHistoryList").append(div).append("<hr>");
+
+        let gradesDiv = $("<div><span class='srb'>Ocenite nas:</span><span class='eng'>Rate us:</span><br></div>");
+        for (const key in previousOrders[i]["grades"]) {
+            let foodName = $(`<span class="srb">${key}</span><span class="eng">${foodNamesDictionary[key]}</span>`);
+            let grade = previousOrders[i]["grades"][key];
+            let gradeButtons = $(`<div class="btn-group" role="gradeGroup"></div>`);
+            for (let k = 1; k <= 5; k++) {
+                let button = $(`<button class="grade-button btn">${k}</button>`);
+                if (grade === k) {
+                    button.addClass('selected');
+                }
+                button.click(() => {
+                    console.log(`Rated ${key} with grade ${k}`);
+
+                    let previousOrders = JSON.parse(localStorage.getItem('vd-proj-previous-orders'));
+                    let previousGrade = previousOrders[i]["grades"][key];
+                    previousOrders[i]["grades"][key] = k;
+                    localStorage.setItem('vd-proj-previous-orders', JSON.stringify(previousOrders));
+
+                    initGradesInLocalStorage();
+                    let grades = JSON.parse(localStorage.getItem('vd-proj-food-grades'));
+                    let index = grades[key].indexOf(previousGrade);
+                    if (index !== -1) {
+                        grades[key].splice(index, 1);
+                    }
+                    grades[key].push(k);
+                    localStorage.setItem('vd-proj-food-grades', JSON.stringify(grades));
+                    gradeButtons.find('.grade-button').removeClass('selected');
+                    button.addClass('selected');
+                });
+                gradeButtons.append(button);
+            }
+            let innerDiv = $("<div class='my-1 py-0'></div>").append(foodName).append(gradeButtons);
+            gradesDiv.append(innerDiv);
+        }
+        $("#orderHistoryList").append(div).append("<br>").append(gradesDiv).append("<hr>");
     }
-    
+
+}
+
+const foodNamesDictionary = {
+    'Hladan krastavac': 'Cold Cucumber',
+    'Salata od gljiva': 'Mushroom Salad',
+    'Voćna salata': 'Fruit Salad',
+    'Ljuto-kisela supa': 'Spicy and Sour Soup',
+    'Pileći prženi rezanci': 'Chicken Fried Noodles',
+    'Knedle od škampa': 'Shrimp Dumplings',
+    'Pirinač': 'Rice',
+    'Bubble tea': 'Bubble Tea',
+    'Mleko od kikirikija': 'Peanut Milk',
+    'Kineski čaj': 'Chinese Tea',
+    'Pohovana banana': 'Fried Banana',
+    'Pohovani ananas': 'Fried Pineapple',
+    'Pohovana čokolada': 'Fried Chocolate'
+};
+
+
+function initGradesInLocalStorage() {
+    if (localStorage.getItem('vd-proj-food-grades') === null) {
+        let grades = {};
+        for (const key in foodNamesDictionary) {
+            grades[key] = [];
+            for(let i=0;i<5;i++){
+                grades[key].push(Math.floor(Math.random() * 5) + 1);
+            }
+        }
+        if (localStorage.getItem('vd-proj-previous-orders') !== null) {
+            let previousOrders = JSON.parse(localStorage.getItem('vd-proj-previous-orders'));
+            for (const order of previousOrders) {
+                for (const key in order["grades"]) {
+                    let grade = order["grades"][key];
+                    if (grade > 0) {
+                        grades[key].push(grade);
+                    }
+                }
+            }
+        }
+        localStorage.setItem('vd-proj-food-grades', JSON.stringify(grades));
+    }
 }
 
 
 let cart = null;
 let previousOrders = null;
 $(document).ready(function () {
+
+    initGradesInLocalStorage();
+
+
     cart = JSON.parse(sessionStorage.getItem('vd-proj-cart'));
     previousOrders = JSON.parse(localStorage.getItem('vd-proj-previous-orders'));
     showCart();
