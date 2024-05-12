@@ -127,10 +127,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-6 d-flex justify-content-center">
+                        <div class="col-lg-6 d-flex justify-content-center">
                             <img id="dishImage" src="" class="img-fluid rounded" alt="Dish Image">
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <h2 id="dishName">
                                 <span class="dish-name-srb srb"></span>
                                 <span class="dish-name-eng eng"></span>
@@ -141,16 +141,16 @@
                             </p>
                             <div class="d-flex flex-column">
                                 <div class="btn-group-horizontal" role="group" aria-label="Portion Size">
-                                    <input type="radio" class="btn-check" name="portionSize" id="smallPortion"
+                                    <input type="radio" class="btn-check btn-themed" name="portionSize" id="smallPortion"
                                         value="small" autocomplete="off" checked>
-                                    <label class="btn btn-outline-primary" for="smallPortion">
+                                    <label class="btn btn-outline-danger" for="smallPortion">
                                         <span class="portion-size srb">Mala porcija, </span>
                                         <span class="portion-size eng">Small, </span>
                                         <span class="portion-price" id="smallPrice"></span>
                                     </label>
-                                    <input type="radio" class="btn-check" name="portionSize" id="largePortion"
+                                    <input type="radio" class="btn-check btn-themed" name="portionSize" id="largePortion"
                                         value="large" autocomplete="off">
-                                    <label class="btn btn-outline-primary" for="largePortion">
+                                    <label class="btn btn-outline-danger" for="largePortion">
                                         <span class="portion-size srb">Velika porcija, </span>
                                         <span class="portion-size eng">Large, </span>
                                         <span class="portion-price" id="largePrice"></span>
@@ -159,11 +159,16 @@
                                 <div class="mt-3 d-flex align-items-center">
                                     <label for="portionNumber" class="form-label me-3 srb">Broj porcija:</label>
                                     <label for="portionNumber" class="form-label me-3 eng">Number of portions:</label>
-                                    <button type="button" class="btn btn-outline-secondary me-2"
-                                        id="decreasePortion">-</button>
+                                    <button type="button" class="btn btn-outline-danger me-2"
+                                        id="decreasePortion">&minus;</button>
                                     <input type="text" class="form-control text-center" id="portionNumber" value="1">
-                                    <button type="button" class="btn btn-outline-secondary ms-2"
-                                        id="increasePortion">+</button>
+                                    <button type="button" class="btn btn-outline-danger ms-2"
+                                        id="increasePortion">&plus;</button>
+                                </div>
+                                <div class="mt-3 text-start">
+                                    <span class="srb">Ocena:</span>
+                                    <span class="eng">Rating:</span>
+                                    <div class="starsRating d-inline">zvezde</div>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +179,7 @@
                         <span class="srb">Zatvori</span>
                         <span class="eng">Close </span>
                     </button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="dodajUKorpu">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="dodajUKorpu">
                         <span class="srb">Dodaj u korpu</span>
                         <span class="eng">Add to cart</span>
                     </button>

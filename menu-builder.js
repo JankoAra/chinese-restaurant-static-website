@@ -124,7 +124,19 @@ function buildFoodCard(food) {
     let descEnglish = food.engDesc;
     let price = food.priceSmall.toFixed(2);
     let altText = nameSerbian + ' slika';
-    
+    let avgGrade = getAvgGrade(food.name);
+    let coloredStars = Math.round(avgGrade);
+
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+        if (i <= coloredStars) {
+            stars += '<span style="color: #e40319">&starf;</span>';
+        } else {
+            stars += '<span style="color: #e40319">&star;</span>';
+        }
+    }
+    stars+="&nbsp;"+avgGrade.toFixed(1)+'/5';
+    console.log(avgGrade);
     return `
     <div class="col">
         <div class="card h-100" data-food-name="${food.name}" 
@@ -133,6 +145,7 @@ function buildFoodCard(food) {
             data-food-desc-eng="${food.engDesc}" 
             data-food-price="${food.priceSmall.toFixed(2)}" 
             data-food-img="${food.imgPath}" 
+            data-food-avg-grade="${avgGrade.toFixed(1)}"
             data-bs-toggle="modal" data-bs-target="#dishModal">
             <div class="row g-1">
                 <div class="col-4 col-md-12">
@@ -144,7 +157,12 @@ function buildFoodCard(food) {
                         <h4 class="card-title eng">${nameEnglish}</h4>
                         <p class="card-text srb">${descSerbian}</p>
                         <p class="card-text eng">${descEnglish}</p>
-                        <h5 class="text-md-end">${price} RSD</h5>
+                        <div class="mt-auto">
+                        <h5 class="justify-content-between d-flex">
+                        <span class="">${stars}</span>
+                        <span class="">${price} RSD</span>
+                        </h5>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,6 +170,14 @@ function buildFoodCard(food) {
     </div>
 
     `;
+}
+
+function getAvgGrade(foodName){
+    let grades = JSON.parse(localStorage.getItem('vd-proj-food-grades'));
+    if(grades === null){
+        return 0;
+    }
+    return grades[foodName].reduce((a, b) => a + b, 0) / grades[foodName].length;
 }
 
 
@@ -282,13 +308,6 @@ $(document).ready(function () {
     });
 
     $(".card").on("click", function () {
-        const foodName = card.dataset.foodName;
-        const foodNameEng = card.dataset.foodNameEng;
-        const foodDesc = card.dataset.foodDesc;
-        const foodDescEng = card.dataset.foodDescEng;
-        const foodPrice = card.dataset.foodPrice;
-        const foodImg = card.dataset.foodImg;
-
         $('#dishModal').modal('show');
     })
 
@@ -300,6 +319,21 @@ $(document).ready(function () {
         var foodNameEng = button.data('food-name-eng');
         var foodDescEng = button.data('food-desc-eng');
         var foodPriceSmall = button.data('food-price');
+        let foodAvgGrade = button.data('food-avg-grade');
+        foodAvgGrade = parseFloat(foodAvgGrade);
+        let coloredStars = Math.round(foodAvgGrade);
+
+        let stars = '';
+        for (let i = 1; i <= 5; i++) {
+            if (i <= coloredStars) {
+                stars += '<span style="color: #e40319">&starf;</span>';
+            } else {
+                stars += '<span style="color: #e40319">&star;</span>';
+            }
+        }
+        console.log(foodAvgGrade);
+        stars+="&nbsp;"+foodAvgGrade.toFixed(1)+'/5';
+
         foodPriceSmall = parseFloat(foodPriceSmall);
         var foodPriceLarge = foodPriceSmall * 1.5;
         var modal = $(this);
@@ -313,6 +347,7 @@ $(document).ready(function () {
         modal.find('.dish-name-eng').text(foodNameEng);
         modal.find('#smallPrice').text(foodPriceSmall.toFixed(2));
         modal.find('#largePrice').text(foodPriceLarge.toFixed(2));
+        modal.find(".starsRating").html(stars);
     });
 
     $("#dodajUKorpu").click(function () {

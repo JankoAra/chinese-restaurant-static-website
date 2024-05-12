@@ -381,3 +381,12 @@ body#galerija {
 .btn-group[role="gradeGroup"]{
     margin-left: 10px;
 }
+
+.starsRating{
+    font-size: 20px;
+}
+
+#portionNumber{
+    border-color: #e40319;
+    color: #e40319;
+}
