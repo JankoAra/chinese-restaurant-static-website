@@ -2,12 +2,14 @@ html {
     min-height: 100%;
     position: relative;
     width: 100%;
+    overflow-x: hidden;
 }
 
 body {
     margin: 0;
     padding-bottom: 75px;
     height: 100%;
+
 }
 
 .navbar-custom {
@@ -43,18 +45,7 @@ footer {
     padding-top: 150px;
 }
 
-#menuBtn {
-    background-color: #ffffff;
-    font-size: 50px;
-    border-radius: 20px;
-    font-weight: bold;
-    border: 5px solid black;
-}
 
-#menuBtn:hover {
-    background-color: #ad0617;
-    color: white;
-}
 
 #exampleDishesRow {
     padding-top: 50px;
@@ -98,15 +89,23 @@ footer {
     z-index: 900;
 }
 
-.btn-group[role="group"] button:enabled,
-#orderButton {
+.btn-group[role="group"] button:enabled {
     color: black;
     border-color: #e40319;
 }
 
-.btn-group[role="group"] button:hover,
-#orderButton:hover {
+.btn-group[role="group"] button:hover {
     background-color: #e40319;
+    color: white;
+}
+
+#orderButton {
+    background-color: #e40319;
+    color: white;
+}
+
+#orderButton:hover {
+    background-color: #8a0210;
     color: white;
 }
 
@@ -195,13 +194,17 @@ td {
 }
 
 #zapratiteNas div {
-    padding: 20px;
+    padding: 10px;
 }
 
-#zapratiteNas div img {
-    height: calc(25vw - 10px);
-    width: calc(25vw - 10px);
+.image-container {
+    height: 300px;
+}
+
+.square-image {
     object-fit: cover;
+    height: 100%;
+    width: 100%;
 }
 
 #socialNetworksName {
@@ -209,6 +212,18 @@ td {
 }
 
 
+#index_order_btn {
+    background-color: #ffffff;
+    font-size: 50px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 5px solid black;
+}
+
+#index_order_btn:hover {
+    background-color: #ad0617;
+    color: white;
+}
 
 .card-img-top {
     width: 100%;
@@ -363,30 +378,48 @@ body#galerija {
     object-fit: cover;
 }
 
-.btn-group[role="gradeGroup"] button{
+.btn-group[role="gradeGroup"] button {
     color: black;
     border-color: #e40319;
 }
 
-.btn-group[role="gradeGroup"] button:hover{
+.btn-group[role="gradeGroup"] button:hover {
     background-color: #e40319;
     color: white;
 }
 
-.btn-group[role="gradeGroup"] button.selected{
+.btn-group[role="gradeGroup"] button.selected {
     background-color: #e40319;
     color: white;
 }
 
-.btn-group[role="gradeGroup"]{
+.btn-group[role="gradeGroup"] {
     margin-left: 10px;
 }
 
-.starsRating{
+.starsRating {
     font-size: 20px;
 }
 
-#portionNumber{
+#portionNumber {
     border-color: #e40319;
     color: #e40319;
+}
+
+#banners {
+    background-color: #e40319;
+    color: white;
+}
+
+#logos a img {
+    width: 50px;
+    height: auto;
+}
+
+#logos a {
+    margin: 10px;
+}
+
+#bestDishes{
+    background-color: #f00;
 }

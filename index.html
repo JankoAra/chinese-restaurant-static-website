@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indeks | Xi-jajno</title>
+    <title id="index_title">Indeks | Xi-jajno</title>
 
     <link rel="stylesheet" href="biblioteke/bootstrap.css">
     <script src="biblioteke/bootstrap.bundle.js"></script>
@@ -24,9 +24,9 @@
         <div class="row">
             <div class="col-12 px-0">
                 <div class="text-center bgImageFood">
-                    <h1 class="text-center srb">Xi-jajna hrana.<br>Xi-jajan ambijent.</h1>
+                    <h1 class="text-center srb" id="index_slogan">Xi-jajna hrana.<br>Xi-jajan ambijent.</h1>
                     <h1 class="text-center eng">Excellent food.<br>Excellent ambience.</h1>
-                    <button class="btn my-5 px-3" id="menuBtn">
+                    <button class="btn my-5 px-3" id="index_order_btn">
                         <span class="srb">Naruči odmah</span>
                         <span class="eng">Order now</span>
                     </button>
@@ -36,35 +36,35 @@
         </div>
         <div class="row" id="exampleDishesRow">
             <div class="col-12 text-center">
-                <h2 class="srb">Probajte naše specijalitete</h2>
+                <h2 class="srb" id="index_try_our_specials">Probajte naše specijalitete</h2>
                 <h2 class="eng">Try our specials</h2>
             </div>
             <div class="col-md-4 col-xs-12 d-flex flex-column align-items-center">
                 <img src="images/dumplings-outline.png" alt="knedle">
-                <h3 class="srb">Knedle</h3>
+                <h3 class="srb" id="index_dumplings">Knedle</h3>
                 <h3 class="eng">Dumplings</h3><br>
-                <span class="srb">Punjene najukusnijim filovima</span>
+                <span class="srb" id="index_dumplings_desc">Punjene najukusnijim filovima</span>
                 <span class="eng">With tasty fillings</span>
             </div>
             <div class="col-md-4 col-xs-12 d-flex flex-column align-items-center">
                 <img src="images/noodles-outline.png" alt="nudle">
-                <h3 class="srb">Nudle</h3>
+                <h3 class="srb" id="index_noodles">Nudle</h3>
                 <h3 class="eng">Noodles</h3><br>
-                <span class="srb">Autentične kineske nudle,<br>ručno pravljene</span>
+                <span class="srb" id="index_noodles_desc">Autentične kineske nudle,<br>ručno pravljene</span>
                 <span class="eng">Authentic chinese noodles,<br>prepared with care</span>
             </div>
             <div class="col-md-4 col-xs-12 d-flex flex-column align-items-center">
                 <img src="images/soup-outline1.png" alt="supa">
-                <h3 class="srb">Supe</h3>
+                <h3 class="srb" id="index_soup">Supe</h3>
                 <h3 class="eng">Soups</h3><br>
-                <span class="srb">Ukusne i bogate,<br> pune tradicionalnih kineskih aroma</span>
+                <span class="srb" id="index_soup_desc">Ukusne i bogate,<br> pune tradicionalnih kineskih aroma</span>
                 <span class="eng">Tasty and healthy,<br> with traditional chinese flavors</span>
             </div>
         </div>
         <div class="row">
             <div class="col-12 text-center bg-dark text-light py-2">
                 <a href="jelovnik-kategorija.html" class="navbar-brand" id="noviDezert">
-                    <h4 class="srb">Probajte naš novi dezert: Pohovani ananas!</h4>
+                    <h4 class="srb" id="index_new_dessert">Probajte naš novi dezert: Pohovani ananas!</h4>
                     <h4 class="eng">Try our new dessert: Fried pineapple!</h4>
                 </a>
             </div>
@@ -72,21 +72,21 @@
         <div class="row">
             <div class="col-md-6 col-xs-12 text-center d-flex flex-column align-items-center" id="dostava">
                 <img src="images/dostava.png" alt="dostava slika">
-                <h3 class="srb">Naručite online</h3>
+                <h3 class="srb" id="index_delivery">Naručite online</h3>
                 <h3 class="eng">Order online</h3><br>
-                <span class="srb">Donosimo izvrsnu hranu na vaša vrata</span>
+                <span class="srb" id="index_delivery_desc">Donosimo izvrsnu hranu na vaša vrata</span>
                 <span class="eng">Get delicious food at your door</span><br>
                 <button class="btn my-5 px-3" id="dostavaBtn">
-                    <span class="srb">Poruči</span>
+                    <span class="srb" id="index_delivery_btn">Poruči</span>
                     <span class="eng">Order now</span>
                 </button>
             </div>
             <div class="col-md-6 col-xs-12 text-center d-flex flex-column align-items-center justify-content-center"
                 id="posetiteNas">
-                <h3 class="srb">Posetite nas u našem restoranu:</h3>
+                <h3 class="srb" id="index_visit">Posetite nas u našem restoranu:</h3>
                 <h3 class="eng">Visit us in our restaurant:</h3><br>
 
-                <div class="srb">
+                <div class="srb" id="index_visit_info">
                     <p>Koste Nađa 99, Mirijevo 3, Beograd</p>
                     <h5>Radno vreme:</h5>
                     <p>Ponedeljak - Petak: 11:00 - 23:00 <br>
@@ -110,26 +110,51 @@
 
             </div>
         </div>
-        <div class="row" id="zapratiteNas">
-            <div class="col-12 text-center">
-                <h2>
-                    <span class="srb">Zapratite nas</span>
-                    <span class="eng">Follow us</span><br>
-                    <a href="o-nama.html" class="navbar-brand" id="socialNetworksName">@xijajno</a>
-                </h2>
+        <div class="row justify-content-center d-flex" id="zapratiteNas">
+            <div class="col-12 col-md-6 offset-md-3">
+                <div class="text-center d-inline">
+                    <h2>
+                        <span class="srb" id="index_follow_us">Zapratite nas</span>
+                        <span class="eng">Follow us</span><br>
+                        <a href="o-nama.html" class="navbar-brand" id="socialNetworksName">@xijajno</a>
+                    </h2>
+                </div>
             </div>
-            <div class="col-md-4 col-xs-12 d-flex flex-column align-items-center">
-                <img src="galerija-images/food1.jpg" alt="food1">
+            <div class="col-12 col-md-3" id="logos">
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="https://www.facebook.com/" target="_blank"><img src="logos/facebook.png"
+                            alt="facebook"></a>
+                    <a href="https://www.instagram.com/" target="_blank"><img src="logos/instagram.png"
+                            alt="instagram"></a>
+                    <a href="https://twitter.com/" target="_blank"><img src="logos/x.png" alt="x"></a>
+                    <a href="https://www.youtube.com/" target="_blank"><img src="logos/youtube.png" alt="youtube"></a>
+                </div>
             </div>
-            <div class="col-md-4 col-xs-12 d-flex flex-column align-items-center">
-                <img src="hrana-images/knedle-od-skampa.jpg" alt="food2">
-            </div>
-            <div class="col-md-4 col-xs-12 d-flex flex-column align-items-center">
-                <img src="galerija-images/food3.webp" alt="food3">
+
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col image-container">
+                    <img src="galerija-images/food1.jpg" alt="food1" class="square-image">
+                </div>
+                <div class="col image-container">
+                    <img src="hrana-images/knedle-od-skampa.jpg" alt="food2" class="square-image">
+                </div>
+                <div class="col image-container">
+                    <img src="galerija-images/food3.webp" alt="food3" class="square-image">
+                </div>
             </div>
         </div>
     </div>
+    <div id="bestDishes" class="container-fluid">
+        <div class="row justify-content-center d-flex">
+            <div class="col-12 text-center text-white mt-3">
+                <h2 class="srb fw-bold" id="index_best_dishes">Ljudi najviše vole:</h2>
+                <h2 class="eng fw-bold">People love our:</h2>
+            </div>
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 my-2" id="bestRatedFoodCards">
 
+            </div>
+        </div>
+    </div>
     <footer class="template" id="footer"></footer>
 </body>
 

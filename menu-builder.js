@@ -7,6 +7,7 @@ class Food {
         this.priceLarge = this.priceSmall * 1.5;
         this.engName = engName;
         this.engDesc = engDesc;
+        this.category = "Nema kategorije";
     }
 }
 
@@ -87,6 +88,8 @@ predjela.push(new Food('Voćna salata', 'hrana-images/vocna-salata.jpg', 490, 'S
 predjela.push(new Food('Ljuto-kisela supa', 'hrana-images/ljuto-kisela-supa.jpg', 260, 'Ljuto-kisela supa sa pečurkama',
     'Spicy and Sour Soup', 'Spicy and sour soup with mushrooms'));
 
+predjela.forEach((food) => food.category = "Predjela");
+
 //glavna jela
 let glavnaJela = [];
 glavnaJela.push(new Food('Pileći prženi rezanci', 'hrana-images/pileci-przeni-rezanci.jpg', 500, 'Piletina sa rezancima u slatko-kiselom sosu',
@@ -95,6 +98,8 @@ glavnaJela.push(new Food('Knedle od škampa', 'hrana-images/knedle-od-skampa.jpg
     'Shrimp Dumplings', 'Chinese dumplings filled with shrimp'));
 glavnaJela.push(new Food('Pirinač', 'hrana-images/pirinac.jpg', 150, 'Kuvani beli pirinač',
     'Rice', 'Boiled white rice'));
+
+glavnaJela.forEach((food) => food.category = "Glavna jela");
 
 //pića
 let pica = [];
@@ -105,6 +110,7 @@ pica.push(new Food('Mleko od kikirikija', 'hrana-images/mleko-od-kikirikija.jpg'
 pica.push(new Food('Kineski čaj', 'hrana-images/kineski-caj.jpg', 190, 'Originalni kineski čaj spremljen na tradicionalan način',
     'Chinese Tea', 'Original Chinese tea prepared in a traditional way'));
 
+pica.forEach((food) => food.category = "Pića");
 //dezerti
 let dezerti = [];
 dezerti.push(new Food('Pohovana banana', 'hrana-images/pohovana-banana.jpg', 400, 'Pohovana banana sa prelivom',
@@ -114,8 +120,12 @@ dezerti.push(new Food('Pohovani ananas', 'hrana-images/pohovani-ananas.jpg', 400
 dezerti.push(new Food('Pohovana čokolada', 'hrana-images/pohovana-cokolada.jpg', 400, 'Pohovana čokolada sa prelivom',
     'Fried Chocolate', 'Fried chocolate with topping'));
 
+dezerti.forEach((food) => food.category = "Dezerti");
+
 
 foodList.push(...predjela, ...glavnaJela, ...pica, ...dezerti);
+
+localStorage.setItem('vd-proj-food-list', JSON.stringify(foodList));
 
 function buildFoodCard(food) {
     let nameSerbian = food.name;
@@ -135,7 +145,7 @@ function buildFoodCard(food) {
             stars += '<span style="color: #e40319">&star;</span>';
         }
     }
-    stars+="&nbsp;"+avgGrade.toFixed(1)+'/5';
+    stars += "&nbsp;" + avgGrade.toFixed(1) + '/5';
     console.log(avgGrade);
     return `
     <div class="col">
@@ -172,9 +182,9 @@ function buildFoodCard(food) {
     `;
 }
 
-function getAvgGrade(foodName){
+function getAvgGrade(foodName) {
     let grades = JSON.parse(localStorage.getItem('vd-proj-food-grades'));
-    if(grades === null){
+    if (grades === null) {
         return 0;
     }
     return grades[foodName].reduce((a, b) => a + b, 0) / grades[foodName].length;
@@ -332,7 +342,7 @@ $(document).ready(function () {
             }
         }
         console.log(foodAvgGrade);
-        stars+="&nbsp;"+foodAvgGrade.toFixed(1)+'/5';
+        stars += "&nbsp;" + foodAvgGrade.toFixed(1) + '/5';
 
         foodPriceSmall = parseFloat(foodPriceSmall);
         var foodPriceLarge = foodPriceSmall * 1.5;
