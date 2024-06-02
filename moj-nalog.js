@@ -158,6 +158,7 @@ function showOrderHistory() {
         </div>`);
         return;
     }
+    previousOrders = previousOrders.reverse();
     for (let i = 0; i < previousOrders.length; i++) {
         let div = $("<div></div>");
         div.addClass('previous-order');
@@ -215,7 +216,7 @@ function showOrderHistory() {
 
 }
 
-const foodNamesDictionary = {
+const foodNamesDictionaryMojNalog = {
     'Hladan krastavac': 'Cold Cucumber',
     'Salata od gljiva': 'Mushroom Salad',
     'Voćna salata': 'Fruit Salad',

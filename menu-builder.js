@@ -79,45 +79,45 @@ let foodList = [];
 
 //predjela
 let predjela = [];
-predjela.push(new Food('Hladan krastavac', 'hrana-images/hladan-krastavac.jpg', 390, 'Salata sa krastavcem i sirćetom',
+predjela.push(new FoodSetup('Hladan krastavac', 'hrana-images/hladan-krastavac.jpg', 390, 'Salata sa krastavcem i sirćetom',
     'Cold Cucumber', 'Salad with cucumber and vinegar'));
-predjela.push(new Food('Salata od gljiva', 'hrana-images/salata-od-gljiva.jpg', 480, 'Salata od kineskih pečuraka',
+predjela.push(new FoodSetup('Salata od gljiva', 'hrana-images/salata-od-gljiva.jpg', 480, 'Salata od kineskih pečuraka',
     'Mushroom Salad', 'Chinese mushroom salad'));
-predjela.push(new Food('Voćna salata', 'hrana-images/vocna-salata.jpg', 490, 'Salata od sezonskog voća',
+predjela.push(new FoodSetup('Voćna salata', 'hrana-images/vocna-salata.jpg', 490, 'Salata od sezonskog voća',
     'Fruit Salad', 'Seasonal fruit salad'));
-predjela.push(new Food('Ljuto-kisela supa', 'hrana-images/ljuto-kisela-supa.jpg', 260, 'Ljuto-kisela supa sa pečurkama',
+predjela.push(new FoodSetup('Ljuto-kisela supa', 'hrana-images/ljuto-kisela-supa.jpg', 260, 'Ljuto-kisela supa sa pečurkama',
     'Spicy and Sour Soup', 'Spicy and sour soup with mushrooms'));
 
 predjela.forEach((food) => food.category = "Predjela");
 
 //glavna jela
 let glavnaJela = [];
-glavnaJela.push(new Food('Pileći prženi rezanci', 'hrana-images/pileci-przeni-rezanci.jpg', 500, 'Piletina sa rezancima u slatko-kiselom sosu',
+glavnaJela.push(new FoodSetup('Pileći prženi rezanci', 'hrana-images/pileci-przeni-rezanci.jpg', 500, 'Piletina sa rezancima u slatko-kiselom sosu',
     'Chicken Fried Noodles', 'Chicken with noodles in sweet and sour sauce'));
-glavnaJela.push(new Food('Knedle od škampa', 'hrana-images/knedle-od-skampa.jpg', 990, 'Porcija kineskih knedli punjenih škampima',
+glavnaJela.push(new FoodSetup('Knedle od škampa', 'hrana-images/knedle-od-skampa.jpg', 990, 'Porcija kineskih knedli punjenih škampima',
     'Shrimp Dumplings', 'Chinese dumplings filled with shrimp'));
-glavnaJela.push(new Food('Pirinač', 'hrana-images/pirinac.jpg', 150, 'Kuvani beli pirinač',
+glavnaJela.push(new FoodSetup('Pirinač', 'hrana-images/pirinac.jpg', 150, 'Kuvani beli pirinač',
     'Rice', 'Boiled white rice'));
 
 glavnaJela.forEach((food) => food.category = "Glavna jela");
 
 //pića
 let pica = [];
-pica.push(new Food('Bubble tea', 'hrana-images/bubble-tea.jpg', 250, 'Mlečni čaj sa kuglicama tapioke',
+pica.push(new FoodSetup('Bubble tea', 'hrana-images/bubble-tea.jpg', 250, 'Mlečni čaj sa kuglicama tapioke',
     'Bubble Tea', 'Milk tea with tapioca balls'));
-pica.push(new Food('Mleko od kikirikija', 'hrana-images/mleko-od-kikirikija.jpg', 200, 'Mleko od kikirikija',
+pica.push(new FoodSetup('Mleko od kikirikija', 'hrana-images/mleko-od-kikirikija.jpg', 200, 'Mleko od kikirikija',
     'Peanut Milk', 'Peanut milk'));
-pica.push(new Food('Kineski čaj', 'hrana-images/kineski-caj.jpg', 190, 'Originalni kineski čaj spremljen na tradicionalan način',
+pica.push(new FoodSetup('Kineski čaj', 'hrana-images/kineski-caj.jpg', 190, 'Originalni kineski čaj spremljen na tradicionalan način',
     'Chinese Tea', 'Original Chinese tea prepared in a traditional way'));
 
 pica.forEach((food) => food.category = "Pića");
 //dezerti
 let dezerti = [];
-dezerti.push(new Food('Pohovana banana', 'hrana-images/pohovana-banana.jpg', 400, 'Pohovana banana sa prelivom',
+dezerti.push(new FoodSetup('Pohovana banana', 'hrana-images/pohovana-banana.jpg', 400, 'Pohovana banana sa prelivom',
     'Fried Banana', 'Fried banana with topping'));
-dezerti.push(new Food('Pohovani ananas', 'hrana-images/pohovani-ananas.jpg', 400, 'Pohovani ananas sa prelivom',
+dezerti.push(new FoodSetup('Pohovani ananas', 'hrana-images/pohovani-ananas.jpg', 400, 'Pohovani ananas sa prelivom',
     'Fried Pineapple', 'Fried pineapple with topping'));
-dezerti.push(new Food('Pohovana čokolada', 'hrana-images/pohovana-cokolada.jpg', 400, 'Pohovana čokolada sa prelivom',
+dezerti.push(new FoodSetup('Pohovana čokolada', 'hrana-images/pohovana-cokolada.jpg', 400, 'Pohovana čokolada sa prelivom',
     'Fried Chocolate', 'Fried chocolate with topping'));
 
 dezerti.forEach((food) => food.category = "Dezerti");
@@ -125,8 +125,9 @@ dezerti.forEach((food) => food.category = "Dezerti");
 
 foodList.push(...predjela, ...glavnaJela, ...pica, ...dezerti);
 
-localStorage.setItem('vd-proj-food-list', JSON.stringify(foodList));
+//localStorage.setItem('vd-proj-food-list', JSON.stringify(foodList));
 
+// Pravi karticu u jelovniku za dati objekat hrane
 function buildFoodCard(food) {
     let nameSerbian = food.name;
     let nameEnglish = food.engName;
@@ -178,10 +179,15 @@ function buildFoodCard(food) {
             </div>
         </div>
     </div>
-
     `;
 }
 
+/**
+ * Izracunava prosecnu ocenu za zadatu hranu.
+ *
+ * @param {string} foodName - Naziv hrane na srpskom.
+ * @return {number} Prosecna ocena, ili 0 ako nema ocena.
+ */
 function getAvgGrade(foodName) {
     let grades = JSON.parse(localStorage.getItem('vd-proj-food-grades'));
     if (grades === null) {
@@ -207,6 +213,7 @@ function buildFoodList() {
     let searchQuery = localStorage.getItem('vd-proj-search');
     let lang = localStorage.getItem("vd-proj-lang");
     if (searchQuery !== null) {
+        // sva hrana koja sadrzi zadati string za pretragu, u srpskom ili engleskom nazivu
         naslov.text('Pretraga');
         naslovEng.text('Search');
         breadCrumbSrb.text($(naslov).text());
@@ -242,7 +249,6 @@ function buildFoodList() {
                 console.log('Nema kategorije');
                 break;
         }
-        //$("title").text(naslov.text() + ' | Xi-jajno');
     }
     breadCrumbSrb.text($(naslov).text());
     breadCrumbEng.text($(naslovEng).text());
@@ -310,6 +316,8 @@ $(document).ready(function () {
         localStorage.setItem("vd-proj-search", searchText);
         buildFoodList();
     });
+
+    //pritisak na enter u search
     $("#trazi-text").keypress(function (e) {
         if (e.which == 13) {
             $("#trazi-btn").click();
@@ -317,19 +325,20 @@ $(document).ready(function () {
         }
     });
 
+    //otvaranje modala sa detaljnim informacijama o hrani
     $(".card").on("click", function () {
         $('#dishModal').modal('show');
     })
 
 
     $('#dishModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var foodName = button.data('food-name'); // Extract info from data-* attributes
-        var foodDesc = button.data('food-desc');
-        var foodNameEng = button.data('food-name-eng');
-        var foodDescEng = button.data('food-desc-eng');
-        var foodPriceSmall = button.data('food-price');
-        let foodAvgGrade = button.data('food-avg-grade');
+        var card = $(event.relatedTarget); // okidac dogadjaja (kartica sa hranom)
+        var foodName = card.data('food-name');
+        var foodDesc = card.data('food-desc');
+        var foodNameEng = card.data('food-name-eng');
+        var foodDescEng = card.data('food-desc-eng');
+        var foodPriceSmall = card.data('food-price');
+        let foodAvgGrade = card.data('food-avg-grade');
         foodAvgGrade = parseFloat(foodAvgGrade);
         let coloredStars = Math.round(foodAvgGrade);
 
@@ -346,11 +355,12 @@ $(document).ready(function () {
 
         foodPriceSmall = parseFloat(foodPriceSmall);
         var foodPriceLarge = foodPriceSmall * 1.5;
+
+        //popunjavanje modala informacijama o pritisnutoj kartici
         var modal = $(this);
         $("#portionNumber").val("1");
         $("#smallPortion").prop("checked", true);
-        //modal.find('.modal-title').text(foodName);
-        modal.find('#dishImage').attr('src', button.data('food-img'));
+        modal.find('#dishImage').attr('src', card.data('food-img'));
         modal.find('.dish-desc-srb').text(foodDesc);
         modal.find('.dish-desc-eng').text(foodDescEng);
         modal.find('.dish-name-srb').text(foodName);
@@ -375,6 +385,7 @@ $(document).ready(function () {
         else {
             let found = false;
             for (let i = 0; i < cart.length; i++) {
+                //ako je proizvod vec u korpi, uvecaj broj proizvoda
                 if (cart[i].name === orderItem.name && cart[i].size === orderItem.size) {
                     cart[i].quantity = parseInt(cart[i].quantity) + parseInt(orderItem.quantity);
                     cart[i].price = parseFloat(cart[i].price) + parseFloat(orderItem.price);
@@ -406,4 +417,4 @@ $(document).ready(function () {
     });
 
     buildFoodList();
-})
+});
