@@ -1,0 +1,14 @@
+services:
+  kineski-restoran:
+    build: .
+    container_name: kineski-restoran
+    networks:
+      - proxy-net
+    expose:
+      - "80"
+    ports:
+      - 30001:80
+    restart: unless-stopped
+networks:
+  proxy-net:
+    external: true
